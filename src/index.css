@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+
+#search{
+    box-shadow: 
+    -4px 0 6px -1px rgba(0, 0, 0, 0.25),  /* left */
+     0 4px 6px -1px rgba(0, 0, 0, 0.25);
+
+
+}
+body {
+  overflow-x: hidden;
+}
+.animated-underline {
+  position: relative;
+  cursor: pointer;
+}
+
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px; /* position of underline */
+  width: 0%;
+  height: 2px;
+  background-color: #000; /* underline color */
+  transition: width 0.3s ease-in-out;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+.Herobanner {
+  width: 1080px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;      /* optional: hides image corners */
+}
+
+/* SmoothInfiniteSlider.css */
+
+.smooth-track {
+  display: flex;
+  animation: slideLoop 40s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Infinite loop animation */
+@keyframes slideLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
+}
+
+/* Allow user to scroll manually */
+.smooth-track {
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+.smooth-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* IMPORTANT: User scroll does NOT interrupt animation */
+.smooth-track {
+  pointer-events: auto;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
