@@ -81,3 +81,12 @@ body {
 .hide-scrollbar {
   scrollbar-width: none;
 }
+
+/* hide scrollbar but allow scroll */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

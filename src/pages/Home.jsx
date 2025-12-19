@@ -1,6 +1,6 @@
 import React from "react";
 import HeroSection from "../Components/HeroSection/HeroSection";
-import CategoriesDropdown from "../Components/Categories/CategoriesDropdown";
+import CategoriesDropdown from "../components/Categories/CategoriesDropdown";
 import burger from "../assets/burger.png"
 import Ramen2 from "../assets/ramen2.png"
 import AutoSlider from "../components/AutoSlider"; 

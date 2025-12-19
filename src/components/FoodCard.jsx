@@ -12,28 +12,41 @@ export default function FoodCard({ item }) {
     }
   };
 
+  // First word from title (your data confirms this exists)
+  const firstWord = item.title?.trim().split(" ")[0];
+
   return (
     <div
       onClick={handleClick}
-      className="relative min-w-[180px] w-[180px] bg-white rounded-xl shadow cursor-pointer overflow-hidden hover:scale-[1.03] transition"
+      className="group relative min-w-[220px] w-[180px] bg-white rounded-xl shadow cursor-pointer overflow-hidden hover:scale-[1.03] transition"
     >
-      {/* IMAGE (safe render) */}
+      {/* IMAGE */}
       {item.image && (
         <img
           src={item.image}
           alt={item.title}
-          className="w-full h-32 object-cover"
+          className="w-full h-38 object-cover z-0 relative"
         />
       )}
 
+      {/* TITLE */}
       <div className="p-2 text-sm font-semibold truncate">
         {item.title}
       </div>
 
-      {/* Optional badge */}
-      {item.source === "dataset" && (
-        <div className="absolute top-2 left-2 bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full">
-          Dataset
+      {/* BADGE (NOW VISIBLE ON HOVER) */}
+      {firstWord && (
+        <div
+          className="
+            absolute top-2 left-2
+            bg-orange-500 text-white text-xs
+            px-2 py-0.5 rounded-full
+            opacity-0 group-hover:opacity-100
+            transition
+            z-10
+          "
+        >
+          {firstWord}
         </div>
       )}
     </div>

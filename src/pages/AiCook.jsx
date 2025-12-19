@@ -6,15 +6,19 @@ console.log("GROQ KEY:", import.meta.env.VITE_GROQ_API_KEY);
 const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
 async function askAICook(userMessage) {
-  const res = await fetch("http://localhost:5000/api/ai-cook", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: userMessage }),
-  });
+  const res = await fetch(
+    "https://foodhub-ai-backend.onrender.com/api/ai-cook",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userMessage }),
+    }
+  );
 
   const data = await res.json();
   return data.reply;
 }
+
 
 
 /* ================== COMPONENT ================== */

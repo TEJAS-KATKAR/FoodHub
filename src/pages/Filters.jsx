@@ -2,77 +2,125 @@
 import React, { useEffect, useState } from "react";
 import { getCategories } from "../api/mealdb";
 import { getCombinedCategory } from "../services/foodAggregator";
-import CategoryRow from "../components/CategoryRow";
+import CategoryRow from "../components/Categories/CategoryRow";
 
 export default function Filters() {
   const [categories, setCategories] = useState([]);
   const [rows, setRows] = useState({});
-  const [active, setActive] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(5);
+  const [activeFilter, setActiveFilter] = useState(null);
 
   useEffect(() => {
-    async function load() {
+    async function loadInitial() {
       const cats = await getCategories();
       setCategories(cats);
 
-      // Load first 6 categories
-      const initial = cats.slice(0, 6);
+      const firstFive = cats.slice(0, 5);
       const newRows = {};
 
-      for (const c of initial) {
-        const items = await getCombinedCategory(c);
-        newRows[c] = items;
+      for (const cat of firstFive) {
+        const items = await getCombinedCategory(cat);
+        newRows[cat] = items;
       }
 
       setRows(newRows);
     }
-    load();
+
+    loadInitial();
   }, []);
 
-  async function handleCategoryClick(c) {
-    setActive(c);
+  async function loadMore() {
+    const nextCats = categories.slice(0, visibleCount + 5);
+    const newRows = { ...rows };
 
-    if (!rows[c]) {
-      const items = await getCombinedCategory(c);
-      setRows(prev => ({ ...prev, [c]: items }));
+    for (const cat of nextCats) {
+      if (!newRows[cat]) {
+        const items = await getCombinedCategory(cat);
+        newRows[cat] = items;
+      }
     }
+
+    setRows(newRows);
+    setVisibleCount((c) => c + 5);
   }
 
-  const visibleCategories = active ? [active] : Object.keys(rows);
+  async function handleFilterClick(cat) {
+    setActiveFilter(cat);
+
+    if (!rows[cat]) {
+      const items = await getCombinedCategory(cat);
+      setRows((prev) => ({ ...prev, [cat]: items }));
+    }
+  }
 
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Filter Foods</h1>
 
-      {/* Category Buttons */}
-      <div className="flex gap-3 flex-wrap mb-4">
+      
+      {/* FILTER BUTTONS */}
+        <div className="flex flex-wrap gap-3 mb-8">
+          <button
+            onClick={() => setActiveFilter(null)}
+            className={`
+              px-5 py-2 rounded-full font-medium
+              border transition-all duration-200
+              ${
+                activeFilter === null
+                  ? "bg-orange-500 text-white shadow-lg scale-105"
+                  : "bg-white text-gray-700 hover:bg-orange-100"
+              }
+            `}
+          >
+            All
+          </button>
+
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => handleFilterClick(cat)}
+              className={`
+                px-5 py-2 rounded-full font-medium
+                border transition-all duration-200
+                ${
+                  activeFilter === cat
+                    ? "bg-orange-500 text-white shadow-lg scale-105"
+                    : "bg-white text-gray-700 hover:bg-orange-100"
+                }
+              `}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+              {/* CATEGORY ROWS */}
+              {(activeFilter ? [activeFilter] : Object.keys(rows)).map((cat) => (
+                <CategoryRow
+                  key={cat}
+                  title={cat}
+                  items={rows[cat]}
+                />
+              ))}
+
+      {/* LOAD MORE (ONLY WHEN NO FILTER) */}
+      {!activeFilter && visibleCount < categories.length && (
         <button
-          onClick={() => setActive(null)}
-          className={`px-4 py-2 rounded-full border ${active === null ? "bg-orange-200" : ""}`}
+          onClick={loadMore}
+          className="
+            mt-8 px-10 py-3
+            bg-orange-500 text-white
+            rounded-full font-semibold
+            shadow-lg
+            transition-all duration-300
+            hover:scale-110 hover:shadow-xl
+            active:scale-95 
+          "
         >
-          All
+          Load more categories
         </button>
 
-        {categories.map(cat => (
-          <button
-            key={cat}
-            onClick={() => handleCategoryClick(cat)}
-            className={`px-4 py-2 rounded-full border ${
-              active === cat ? "bg-orange-200" : ""
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* Rows */}
-      {visibleCategories.map(cat => (
-        <CategoryRow
-          key={cat}
-          title={cat}
-          items={rows[cat] || []}
-        />
-      ))}
+      )}
     </div>
   );
 }
