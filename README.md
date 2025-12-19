@@ -1,16 +1,7 @@
-# React + Vite
+# FoodHub
+FoodHub is a modern food discovery web application built with React that integrates multiple APIs and datasets into a single, unified platform.
+Users can browse, filter, and explore a wide range of food items while viewing rich details powered by real-world data sources.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The project also includes an AI-powered chat assistant that allows users to interact naturally, ask food-related questions, and receive contextual responses, simulating a real product experience.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+FoodHub focuses on clean UI design, scalable component architecture, and robust handling of real-world challenges such as missing data, broken external images, and varying API structures.

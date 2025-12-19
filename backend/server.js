@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import fetch from "node-fetch";
 
 const app = express();
 
@@ -14,6 +13,13 @@ app.get("/", (req, res) => {
 app.post("/api/ai-cook", async (req, res) => {
   try {
     const userMessage = req.body.message;
+
+    if (!userMessage) {
+      return res.json({ reply: "No message received" });
+    }
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000); // 15 sec timeout
 
     const response = await fetch(
       "https://api.groq.com/openai/v1/chat/completions",
@@ -29,7 +35,7 @@ app.post("/api/ai-cook", async (req, res) => {
             {
               role: "system",
               content:
-                "You are AI Cook for FoodHub. You ONLY answer food-related questions. If the question is not about food, politely refuse.",
+                "You are AI Cook for FoodHub. Only answer food-related questions. If not food, politely refuse.",
             },
             {
               role: "user",
@@ -37,16 +43,27 @@ app.post("/api/ai-cook", async (req, res) => {
             },
           ],
         }),
+        signal: controller.signal,
       }
     );
 
+    clearTimeout(timeout);
+
     const data = await response.json();
+
+    if (!data.choices || !data.choices[0]) {
+      return res.json({ reply: "AI did not return a response." });
+    }
 
     res.json({
       reply: data.choices[0].message.content,
     });
-  } catch (err) {
-    res.status(500).json({ reply: "AI failed" });
+  } catch (error) {
+    console.error("AI ERROR:", error.message);
+
+    res.json({
+      reply: "AI service is waking up. Please try again.",
+    });
   }
 });
 
