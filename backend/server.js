@@ -52,7 +52,7 @@ app.post("/api/ai-cook", async (req, res) => {
     const data = await response.json();
 
     if (!data.choices || !data.choices[0]) {
-      return res.json({ reply: "AI did not return a response." });
+      return res.json({ reply: "🍳 AI Cook is busy right now. Please try again in a moment." });
     }
 
     res.json({
