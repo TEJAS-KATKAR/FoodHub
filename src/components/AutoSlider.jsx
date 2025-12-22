@@ -4,16 +4,16 @@ import React from "react";
 export default function SmoothInfiniteSlider() {
   // Add 10 images — duplicates will be auto-generated
   const images = [
-    "/slider1.jpg",
-    "/slider2.jpg",
-    "/slider3.jpg",
-    "/slider4.jpg",
-    "/slider5.jpg",
-    "/slider6.jpg",
-    "/slider7.jpg",
-    "/slider8.jpg",
-    "/slider9.jpg",
-    "/slider10.jpg",
+    "https://img.pikbest.com/backgrounds/20210514/sushi-japanese-food-banner_5964063.jpg!bwr800",
+    "https://img.freepik.com/premium-photo/pizza-slices-toppings-basil-black-background-3d-vector-template_1061150-85082.jpg?semt=ais_hybrid&w=740&q=80",
+    "https://i.pinimg.com/736x/2a/43/5e/2a435ea04f35b21d2f70688aac7accf5.jpg",
+    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/taco-social-media-instagram-post-banner-design-template-51db59b4900b14e3ba51e53280e07418_screen.jpg?ts=1664556985",
+    "https://mir-s3-cdn-cf.behance.net/project_modules/fs/149e2b99770017.5efa406bee0ab.jpg",
+    "https://img.freepik.com/premium-photo/hot-dog-advertisement-hot-dog-with-condiments-it_1242875-866.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRevc4yT62UjCk5nh9LrI-i_IjoeW08ajqETw&s",
+    "https://cdn3.f-cdn.com//files/download/170332335/Chocolate%20Cake%20Bakery%20Confectionery%20Social%20Media%20Banner%20Design.png?width=780&height=780&fit=crop",
+    "https://img.freepik.com/premium-psd/delicious-momos-food-social-media-promotion-instagram-banner-post-design-template_592138-1869.jpg",
+    "https://i.pinimg.com/736x/33/fc/a6/33fca69cbcefb82d13067d6d365de51f.jpg",
   ];
 
   // Duplicate 4X for super smooth looping
