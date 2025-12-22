@@ -76,11 +76,11 @@ export default function AboutUs() {
         <div className="bg-[#020617] text-white rounded-3xl shadow-2xl p-6 md:p-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
 
-            <div className="md:col-span-6 bg-[#0f172a] rounded-2xl p-6">
+            <div className="md:col-span-6 bg-[#0f172a] rounded-2xl p-6 transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">
               <h2 className="text-2xl font-bold mb-4 text-orange-400">
                 Technologies Used
               </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 ">
                 <Tech icon={<Flame />} label="React.js" />
                 <Tech icon={<Bot />} label="AI Integration (API)" />
                 <Tech icon={<Palette />} label="Tailwind CSS" />
@@ -93,7 +93,7 @@ export default function AboutUs() {
               </div>
             </div>
 
-            <div className="md:col-span-6 bg-[#0f172a] rounded-2xl p-6">
+            <div className="md:col-span-6 bg-[#0f172a] rounded-2xl p-6 transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">
               <h2 className="text-2xl font-bold mb-4 text-orange-400">
                 Why FoodHub Exists
               </h2>
@@ -132,7 +132,7 @@ export default function AboutUs() {
       </div>
 
       <h2 className="text-3xl font-bold">Tejas Katkar</h2>
-      <p className="text-orange-400 text-lg font-medium mt-1">
+      <p className="text-orange-400 text-lg font-medium mt-1 transition-all duration-100 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">
         Frontend Developer
       </p>
 
@@ -143,9 +143,9 @@ export default function AboutUs() {
 
       {/* SOCIAL ICONS */}
       <div className="flex gap-6 mt-6 text-gray-400">
-        <a href="#" className="hover:text-orange-400 transition">Twitter</a>
-        <a href="#" className="hover:text-orange-400 transition">Instagram</a>
-        <a href="#" className="hover:text-orange-400 transition">LinkedIn</a>
+        <a href="#" className="hover:text-orange-400  duration-100 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">Twitter</a>
+        <a href="#" className="hover:text-orange-400 transition duration-100 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">Instagram</a>
+        <a href="#" className="hover:text-orange-400 transition duration-100 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">LinkedIn</a>
       </div>
     </div>
 
@@ -170,7 +170,7 @@ export default function AboutUs() {
           ].map(skill => (
             <span
               key={skill}
-              className="px-5 py-2 rounded-full bg-[#1e293b] text-gray-200"
+              className="px-5 py-2 rounded-full bg-[#1e293b] text-gray-200 duration-100 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]"
             >
               {skill}
             </span>
@@ -179,12 +179,12 @@ export default function AboutUs() {
       </div>
 
       {/* ABOUT ME TEXT */}
-      <div className="bg-[#020617] rounded-2xl p-6 min-h-[220px]">
+      <div className="bg-[#020617] rounded-2xl p-6 min-h-[220px] duration-300 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">
         <h3 className="text-xl font-semibold text-orange-400 mb-4">
           About Me
         </h3>
 
-        <p className="text-gray-300 text-base leading-relaxed">
+        <p className="text-gray-300 text-base leading-relaxed ">
           I enjoy working on frontend problems involving layout, navigation,
           and data organization, focusing on clarity and maintainability rather
           than just visuals.
@@ -202,7 +202,7 @@ export default function AboutUs() {
     className="
       mt-10 rounded-xl px-6 py-4 text-center
       bg-linear-to-r from-yellow-300/80 to-orange-400/40
-      border border-yellow-400/80 max-w-100 ml-auto mr-auto
+      border border-yellow-400/80 max-w-100 ml-auto mr-auto duration-100 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]
     "
   >
     <h3 className="text-xl font-semibold mb-3 ">
