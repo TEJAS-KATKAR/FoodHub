@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-console.log("GROQ KEY:", import.meta.env.VITE_GROQ_API_KEY);
-
+import BackupAI from "../components/BackupAI";
 
 /* ================== GROQ CONFIG ================== */
 const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
@@ -50,17 +49,7 @@ export default function AiCookChat() {
     }
   }, [messages]);
 
-  /* ---------- space focuses input ---------- */
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (e.code === "Space" && document.activeElement !== inputRef.current) {
-        e.preventDefault();
-        inputRef.current.focus();
-      }
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, []);
+  
 
   /* ---------- helpers ---------- */
   const playPopSound = () => {
@@ -146,12 +135,14 @@ export default function AiCookChat() {
           sender: "ai",
           time: getTime(),
         },
+
       ]);
     }
   };
 
   /* ================== UI ================== */
   return (
+    <div className="flex flex-col">
     <div className="min-h-screen bg-orange-200/30 rounded-2xl flex justify-center items-center px-2 bg-[url('/chatbg.png')] bg-repeat w-full h-screen bg-size-[500px_400px] bg-center">
       <div className="w-full md:w-230 max-w-5xl h-[90vh] bg-white rounded-2xl shadow-xl flex flex-col overflow-hidden">
         {/* Header */}
@@ -230,6 +221,8 @@ export default function AiCookChat() {
           </button>
         </div>
       </div>
+    </div>
+    <div><BackupAI/></div>
     </div>
   );
 }
