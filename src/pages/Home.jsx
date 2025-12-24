@@ -1,5 +1,5 @@
 import React from "react";
-import HeroSection from "../Components/HeroSection/HeroSection";
+import HeroSection from "../components/HeroSection/HeroSection";
 import CategoriesDropdown from "../components/Categories/CategoriesDropdown";
 import burger from "../assets/burger.png"
 import Ramen2 from "../assets/ramen2.png"
@@ -58,6 +58,12 @@ export default function Home() {
           </div>
         </div>
         </div>
+                  <div className="w-full items-center justify-center flex ">
+                    <div className="w-120 border rounded-4xl p-4 ">
+                      <h1 className="font-extralight text-center">The website is not completed yet, be patient</h1>
+                      <img src="https://www.shutterstock.com/image-vector/traffic-warning-sign-board-construction-260nw-2517286865.jpg" className="w-100 ml-auto mr-auto "/></div>
+                    </div>
+                    
     </div>
   );
 }

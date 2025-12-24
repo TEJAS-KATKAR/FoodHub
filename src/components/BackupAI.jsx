@@ -192,53 +192,53 @@ const foodResponses = [
   aliases: ["samosa", "evening", "tea","snack", "street", "fried", "indian"],
   responses: [
   {
-    text: "<strong>Samosa</strong> is a very popular <strong>snack</strong> known for its <strong>crispy texture</strong> and <strong>spicy filling</strong>, usually made with <strong>potatoes, spices, and a flaky outer covering</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Classic Aloo Samosa</strong> is a very popular <strong>snack</strong> known for its <strong>crispy texture</strong> and <strong>spicy filling</strong>, usually made with <strong>potatoes, spices, and a flaky outer covering</strong>.",
+    images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREsG7LB1-B9eLB9PbqfomZfU64cm7p7ZfyIw&s", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJFPP0wyCOQefudUz7vjo9QtLIXPz9BWoY_g&s"]
   },
   {
-    text: "<strong>Samosas</strong> are often eaten as <strong>evening snacks</strong> or during <strong>gatherings</strong>, freshly prepared using <strong>potato filling, spices, and deep-fried pastry</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Punjabi Samosa</strong> is often eaten as <strong>evening snacks</strong> or during <strong>gatherings</strong>, freshly prepared using <strong>potato filling, spices, and deep-fried pastry</strong>.",
+    images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUjCxq9xUgjuHUxoNpUE-VcywTv1z07GnP4w&s", "https://ministryofcurry.com/wp-content/uploads/2025/08/samosa-6.jpg"]
   },
   {
-    text: "Because <strong>samosas are filling</strong>, even <strong>one or two</strong> can satisfy hunger, thanks to the <strong>potato stuffing and fried outer layer</strong>.",
-    images: ["IMG", "IMG"]
+    text: "Because <strong>Street-Style Aloo Samosa</strong> is <strong>filling</strong>, even <strong>one or two</strong> can satisfy hunger, thanks to the <strong>potato stuffing and fried outer layer</strong>.",
+    images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREsG7LB1-B9eLB9PbqfomZfU64cm7p7ZfyIw&s", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJFPP0wyCOQefudUz7vjo9QtLIXPz9BWoY_g&s"]
   },
   {
-    text: "<strong>Samosas</strong> are widely searched because they are <strong>iconic street food</strong>, commonly sold and enjoyed with <strong>spicy fillings and crispy texture</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Indian Street Samosa</strong> is widely searched because it is <strong>iconic street food</strong>, commonly sold and enjoyed with <strong>spicy fillings and crispy texture</strong>.",
+    images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREsG7LB1-B9eLB9PbqfomZfU64cm7p7ZfyIw&s", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJFPP0wyCOQefudUz7vjo9QtLIXPz9BWoY_g&s"]
   },
   {
-    text: "<strong>Samosas</strong> are usually paired with <strong>chutneys</strong> for extra flavor, such as <strong>mint chutney, tamarind chutney, or sauces</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Chaat-Style Samosa</strong> is usually paired with <strong>chutneys</strong> for extra flavor, such as <strong>mint chutney, tamarind chutney, or sauces</strong>.",
+    images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlqVZuk--r2_lu7D5VhGix4N-7Ne54GuTdQg&s", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0w9PekOOKBE1epio_07G3qdg2-CaLE82n4Q&s"]
   }
 ]
-
 },
 {
   id: "pasta",
-  aliases: ["pasta","white", "sauce", "italian", "comfort","food", "easy"," dinner", "recipe"],
+  aliases: ["pasta","white", "sauce", "italian", "comfort","food", "easy"," dinner", "recipe","snacks"],
   responses: [
   {
-    text: "<strong>Pasta</strong> is popular because it’s <strong>easy to cook</strong> and works well with <strong>many sauces</strong>, such as <strong>white sauce, red sauce, or simple oil-based sauces</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>White Sauce Pasta</strong> is popular because it’s <strong>easy to cook</strong> and works well with <strong>many sauces</strong>, such as <strong>white sauce, red sauce, or simple oil-based sauces</strong>.",
+    images: ["https://www.cookwithkushi.com/wp-content/uploads/2016/07/best_white_sauce_pasta_bechamel_sauce.jpg", "https://www.indianveggiedelight.com/wp-content/uploads/2022/12/white-sauce-pasta-featured.jpg"]
   },
   {
-    text: "<strong>Veg pasta</strong> is often chosen when someone wants a <strong>quick</strong> and <strong>filling meal</strong>, prepared using <strong>pasta, vegetables, sauce, and basic seasoning</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Veg Red Sauce Pasta</strong> is often chosen when someone wants a <strong>quick</strong> and <strong>filling meal</strong>, prepared using <strong>pasta, vegetables, sauce, and basic seasoning</strong>.",
+    images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY416IBgLBkJcFI5YbsP9NuiNeIaC8GBxpyw&s", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsNobsgh18y1843Orw2FsmRULoclDTJOg3iA&s"]
   },
   {
-    text: "<strong>Pasta dishes</strong> can be kept <strong>light</strong> or made <strong>rich</strong> depending on the <strong>sauce</strong>, using ingredients like <strong>cream, cheese, tomatoes, or olive oil</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Creamy Cheese Pasta</strong> can be kept <strong>light</strong> or made <strong>rich</strong> depending on the <strong>sauce</strong>, using ingredients like <strong>cream, cheese, tomatoes, or olive oil</strong>.",
+    images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHkGuM4FzqtvuzDLazIyFwruNBCLJukhehNw&s", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOe-YLykVHEQK5GvaUuoZVieaaO-thRpPa3Q&s"]
   },
   {
-    text: "<strong>Pasta</strong> is commonly searched as a <strong>comfort food option</strong>, especially when prepared with <strong>familiar flavors and sauces</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Classic Italian Pasta</strong> is commonly searched as a <strong>comfort food option</strong>, especially when prepared with <strong>familiar flavors and sauces</strong>.",
+    images: ["https://urbanblisslife.com/wp-content/uploads/2016/10/Rigatoni-with-Italian-Sausage-2022-FEATURE.jpg", "https://www.realfoodwithsarah.com/wp-content/uploads/2024/05/authentic-italian-pasta-sauce-3.jpg"]
   },
   {
-    text: "<strong>Pasta</strong> works well for both <strong>lunch</strong> and <strong>dinner meals</strong>, as it is <strong>easy to prepare</strong> and satisfying to eat.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Veg Masala Pasta</strong> works well for both <strong>lunch</strong> and <strong>dinner meals</strong>, as it is <strong>easy to prepare</strong> and satisfying to eat.",
+    images: ["https://www.vegrecipesofindia.com/wp-content/uploads/2017/03/indian-style-masala-pasta-recipe1.jpg", "https://holycowvegan.net/wp-content/uploads/2025/04/masala-pasta-2.jpg"]
   }
 ]
+
 
 },
 
@@ -247,26 +247,27 @@ const foodResponses = [
   aliases: ["chicken", "meat", "steak", "pork" ,"non" ,"nonveg" ,"nonvegitarian","protein",'grilled'],
   responses: [
   {
-    text: "<strong>Chicken dishes</strong> are popular because <strong>chicken is easy to cook</strong> and <strong>absorbs flavors well</strong>, especially when prepared with <strong>spices, herbs, oil, and basic marinades</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Chicken Curry</strong> is popular because <strong>chicken is easy to cook</strong> and <strong>absorbs flavors well</strong>, especially when prepared with <strong>spices, herbs, oil, and basic marinades</strong>.",
+    images: ["https://spicecravings.com/wp-content/uploads/2025/07/Coconut-Curry-Chicken-New-Featured.jpg", "https://butfirstchai.com/wp-content/uploads/2023/01/chicken-chettinad-curry-recipes.jpg"]
   },
   {
-    text: "<strong>Chicken recipes</strong> are often searched when someone wants a <strong>protein-rich meal</strong>, as chicken provides <strong>good protein</strong> and works well with <strong>simple spices and seasonings</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Grilled Chicken</strong> recipes are often searched when someone wants a <strong>protein-rich meal</strong>, as chicken provides <strong>good protein</strong> and works well with <strong>simple spices and seasonings</strong>.",
+    images: ["https://kristineskitchenblog.com/wp-content/uploads/2023/05/grilled-chicken-recipe-25.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzFu_9xepJB1ePXg_UxEiFth25KPc1R7WbrQ&s"]
   },
   {
-    text: "<strong>Chicken</strong> can be cooked in <strong>many ways</strong>, making it very <strong>versatile</strong>, whether it is <strong>grilled, pan-fried, baked, or cooked in curry</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Chicken Tikka</strong> can be cooked in <strong>many ways</strong>, making it very <strong>versatile</strong>, whether it is <strong>grilled, pan-fried, baked, or cooked in curry</strong>.",
+    images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_7EmdH71bX6lKH9qRzkm70schQnx1_q05Ug&s", "https://www.whiskaffair.com/wp-content/uploads/2020/06/Chicken-Tikka-2-3.jpg"]
   },
   {
-    text: "<strong>Chicken dishes</strong> are suitable for both <strong>quick meals</strong> and <strong>special occasions</strong>, depending on the <strong>cooking style and ingredients</strong> used.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Butter Chicken</strong> is suitable for both <strong>quick meals</strong> and <strong>special occasions</strong>, depending on the <strong>cooking style and ingredients</strong> used.",
+    images: ["https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/butter-chicken-recipe.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsdHbLpoZ41iDhrAmMy7KT0OX3sgHek0FWwg&s"]
   },
   {
-    text: "<strong>Chicken</strong> is commonly chosen because it <strong>balances taste and nutrition</strong>, especially when cooked using <strong>fresh ingredients and controlled spices</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Home-Style Chicken Masala</strong> is commonly chosen because it <strong>balances taste and nutrition</strong>, especially when cooked using <strong>fresh ingredients and controlled spices</strong>.",
+    images: ["https://static.toiimg.com/thumb/54673639.cms?imgsize=497063&width=800&height=800", "https://www.whiskaffair.com/wp-content/uploads/2021/01/Chicken-Masala-2-3-1.jpg"]
   }
 ]
+
 
 },
 
@@ -275,27 +276,26 @@ const foodResponses = [
   aliases: ["fish", "seafood","sea", "non" ,"non-veg" ,"nonvegitarian","protein"],
   responses: [
   {
-    text: "<strong>Fish dishes</strong> are popular because they are <strong>light</strong> and <strong>cook relatively quickly</strong>, usually prepared using <strong>fish, oil, basic spices, and herbs</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Fish Fry</strong> is popular because it is <strong>light</strong> and <strong>cooks relatively quickly</strong>, usually prepared using <strong>fish, oil, basic spices, and herbs</strong>.",
+    images: ["https://tiffinandteaofficial.com/wp-content/uploads/2024/04/Untitled-1-1.jpg", "https://butteroverbae.com/wp-content/uploads/2018/11/spicy-fish-fry-served.jpg"]
   },
   {
-    text: "<strong>Fish recipes</strong> are often searched by people looking for <strong>healthier meal options</strong>, as fish is commonly cooked with <strong>minimal oil, spices, and fresh ingredients</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Grilled Fish</strong> recipes are often searched by people looking for <strong>healthier meal options</strong>, as fish is commonly cooked with <strong>minimal oil, spices, and fresh ingredients</strong>.",
+    images: ["https://www.masalakorb.com/wp-content/uploads/2016/08/Grilled-Fish-Indian-Recipe-V5.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFOe91CbnUN8WLf0KkabzCLDHxXmO5jP5PqA&s"]
   },
   {
-    text: "<strong>Fish</strong> absorbs <strong>spices well</strong> and doesn’t require <strong>long cooking time</strong>, making it easy to prepare with <strong>simple marinades, spices, and quick cooking methods</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Fish Curry</strong> absorbs <strong>spices well</strong> and doesn’t require <strong>long cooking time</strong>, making it easy to prepare with <strong>simple marinades, spices, and quick cooking methods</strong>.",
+    images: ["https://www.whiskaffair.com/wp-content/uploads/2018/06/Alleppey-Fish-Curry-2-3.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnLV_Dq4nc6uUZ0RD9IPp96gGGv7JAKDj47A&s"]
   },
   {
-    text: "<strong>Fish dishes</strong> work well for both <strong>lunch</strong> and <strong>dinner</strong>, depending on the <strong>cooking style and seasoning</strong> used.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Pan-Fried Fish</strong> works well for both <strong>lunch</strong> and <strong>dinner</strong>, depending on the <strong>cooking style and seasoning</strong> used.",
+    images: ["https://shahzadidevje.com/wp-content/uploads/2023/01/Pan-Fried-Basa-Fish-Fillets-3-500x500.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKJCrjHBFk1xpZJsI2Awc3z83J0gI9nJSU2A&s"]
   },
   {
-    text: "<strong>Fish</strong> is commonly chosen for its <strong>balance of taste and nutrition</strong>, especially when cooked with <strong>fresh fish, mild spices, and healthy oils</strong>.",
-    images: ["IMG", "IMG"]
+    text: "<strong>Home-Style Fish Masala</strong> is commonly chosen for its <strong>balance of taste and nutrition</strong>, especially when cooked with <strong>fresh fish, mild spices, and healthy oils</strong>.",
+    images: ["https://shahzadidevje.com/wp-content/uploads/2023/01/Pan-Fried-Basa-Fish-Fillets-3-500x500.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKJCrjHBFk1xpZJsI2Awc3z83J0gI9nJSU2A&s"]
   }
 ]
-
 }
 
 ];
