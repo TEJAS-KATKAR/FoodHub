@@ -1,38 +1,25 @@
 import React from "react";
 import Comments from "../Comments/comments";
-import Herobanner from "../../assets/Herobanner.jpg"
+import Herobanner from "../../assets/Herobanner.jpg";
 
 export default function HeroSection() {
   return (
-    <section style={{ display: "flex", gap: 20, marginBottom: 20 }}>
+    <section className="flex gap-5 mb-5 flex-col lg:flex-row">
+      
       {/* Left Hero Area */}
-      <div className="Herobanner">
-        <img src={Herobanner}/>
+      <div className="w-full">
+        <img src={Herobanner} className="w-full h-auto object-cover rounded-md" />
       </div>
 
-      {/* Right Comments Preview */}
-      <aside
-        style={{
-          width: 360,
-          border: "1px solid #e6e6e6",
-          borderRadius: 6,
-          padding: 12,
-        }}
-      >
+      {/* Right Comments Preview (HIDDEN ON MOBILE) */}
+      <aside className="hidden h-[310px] lg:block w-[460px] border border-[#e6e6e6] rounded-md p-3">
         <h3>Comments</h3>
 
-        <div
-          style={{
-            height: 220,
-            overflow: "auto",
-            background: "#fff",
-            padding: 8,
-          }}
-        >
+        <div className="h-[230px] overflow-auto bg-white p-2">
           <Comments preview={true} />
         </div>
 
-        <a href="/comments" style={{ display: "block", marginTop: 8, color: "blue" }}>
+        <a href="/comments" className="block mt-2 text-blue-600">
           Read more →
         </a>
       </aside>
