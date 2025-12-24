@@ -60,14 +60,7 @@ body {
   }
 }
 
-/* Allow user to scroll manually */
-.smooth-track {
-  overflow-x: scroll;
-  scrollbar-width: none;
-}
-.smooth-track::-webkit-scrollbar {
-  display: none;
-}
+
 
 /* IMPORTANT: User scroll does NOT interrupt animation */
 .smooth-track {
