@@ -5,6 +5,7 @@ import NL3 from "../../assets/NL3.webp";
 import NL4 from "../../assets/NL4.webp";
 import NL5 from "../../assets/NL5.webp";
 import NL6 from "../../assets/NL6.webp";
+import {Newspaper} from "lucide-react";
 
 export default function Rsidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,19 +36,26 @@ export default function Rsidebar() {
     <>
       {/* RIGHT SMALL BUTTON */}
       <div
-        className="fixed top-[135px] right-0 w-8 h-[calc(100vh-135px)] bg-orange-500
-                   flex justify-center items-center cursor-pointer z-2000 "
-        onClick={() => setIsOpen(true)}
-      >
-        <div className="rotate-90 text-white font-bold tracking-[12px]">
-          NEWSLETTER
-        </div>
-      </div>
+  className="fixed top-[135px] right-0 w-12 lg:w-8 h-[calc(100vh-805px)] lg:h-[calc(100vh-165px)] bg-orange-500
+             flex justify-center items-center cursor-pointer z-2000 rounded-l-2xl"
+  onClick={() => setIsOpen(true)}
+>
+  {/* DESKTOP TEXT */}
+  <div className="hidden lg:block rotate-90 text-white font-bold tracking-[12px]">
+    NEWSLETTER
+  </div>
+
+  {/* MOBILE ICON */}
+  <div className="block lg:hidden">
+    <Newspaper className="w-6 h-6 text-white" />
+  </div>
+</div>
+
 
       {/* SIDEBAR PANEL */}
       <div
         className={`
-          fixed top-[135px] right-0 w-100 h-[calc(100vh-155px)] bg-white shadow-xl
+          fixed top-[135px] right-0 w-100 h-[calc(100vh-305px)] lg:h-[calc(100vh-165px)] bg-white shadow-xl
           border-l border-gray-300 p-5 overflow-y-auto z-2001
           transition-transform duration-300 rounded-l-4xl
           ${isOpen ? "translate-x-0" : "translate-x-full"}
