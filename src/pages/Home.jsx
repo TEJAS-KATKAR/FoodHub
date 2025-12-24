@@ -2,7 +2,7 @@ import React from "react";
 import HeroSection from "../components/HeroSection/HeroSection";
 import CategoriesDropdown from "../components/Categories/CategoriesDropdown";
 import burger from "../assets/burger.png"
-import Ramen2 from "../assets/ramen2.png"
+import Ramen2 from "../assets/Ramen2.png"
 import AutoSlider from "../components/AutoSlider"; 
 
 
