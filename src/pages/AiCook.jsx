@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import BackupAI from "../components/BackupAI";
 
 /* ================== GROQ CONFIG ================== */
-const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
 async function askAICook(userMessage) {
   const res = await fetch(
@@ -18,15 +17,12 @@ async function askAICook(userMessage) {
   return data.reply;
 }
 
-
-
 /* ================== COMPONENT ================== */
 export default function AiCookChat() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
 
   const messagesRef = useRef(null);
-  const inputRef = useRef(null);
   const shouldAutoScroll = useRef(true);
 
   /* ---------- scroll handling ---------- */
@@ -48,8 +44,6 @@ export default function AiCookChat() {
       el.scrollTop = el.scrollHeight;
     }
   }, [messages]);
-
-  
 
   /* ---------- helpers ---------- */
   const playPopSound = () => {
@@ -76,19 +70,17 @@ export default function AiCookChat() {
     "calories",
     "diet",
     "cuisine",
-    "ingredients",
+    "ingredients","fish","biryani","paneer","noodles","veg","wuick","oil","bread"
   ];
 
   const isFoodRelated = (text) =>
     foodKeywords.some((k) => text.toLowerCase().includes(k));
 
   /* ================== SEND MESSAGE ================== */
-  const sendMessage = async () => {
-    if (!input.trim()) return;
+  const sendMessage = async (textFromSuggestion = null) => {
+    const userText = textFromSuggestion ?? input;
+    if (!userText.trim()) return;
 
-    const userText = input;
-
-    // show user message
     setMessages((prev) => [
       ...prev,
       { text: userText, sender: "user", time: getTime() },
@@ -97,7 +89,6 @@ export default function AiCookChat() {
     playPopSound();
     setInput("");
 
-    // 🚫 NON-FOOD MESSAGE → STOP HERE
     if (!isFoodRelated(userText)) {
       setMessages((prev) => [
         ...prev,
@@ -110,7 +101,6 @@ export default function AiCookChat() {
       return;
     }
 
-    // typing indicator
     setMessages((prev) => [
       ...prev,
       { text: "AI Cook is typing...", sender: "ai", time: "" },
@@ -121,13 +111,13 @@ export default function AiCookChat() {
 
       setMessages((prev) => {
         const updated = [...prev];
-        updated.pop(); // remove typing
+        updated.pop();
         return [
           ...updated,
           { text: aiReply, sender: "ai", time: getTime() },
         ];
       });
-    } catch (error) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         {
@@ -135,9 +125,13 @@ export default function AiCookChat() {
           sender: "ai",
           time: getTime(),
         },
-
       ]);
     }
+  };
+
+  /* ================== SUGGESTION HANDLER ================== */
+  const sendSuggestion = (text) => {
+    sendMessage(text);
   };
 
   /* ================== UI ================== */
@@ -202,27 +196,52 @@ export default function AiCookChat() {
           ))}
         </div>
 
-        {/* Input */}
-        <div className="p-4 border-t flex gap-3">
-          <input
-            ref={inputRef}
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            placeholder="Type something here..."
-            className="flex-1 px-4 py-2 rounded-full border text-sm focus:outline-none"
-          />
-          <button
-            onClick={sendMessage}
-            className="w-11 h-11 rounded-full bg-orange-500/90 text-white flex items-center justify-center"
-          >
-            ➤
-          </button>
+        
+            {/* SUGGESTIONS */}
+          <div className="px-4 py-2 overflow-x-auto scrollbar-hide">
+            <div className="flex gap-3 w-max">
+              {[
+                "How to make biryani?",
+                "How to cook fish curry?",
+                "Easy chicken recipes",
+                "Paneer dishes for dinner",
+                "Quick noodle recipes",
+                "Healthy breakfast ideas",
+                "Best street food snacks",
+                "Low-oil veg recipes",
+              ].map((text) => (
+                <button
+                  key={text}
+                  onClick={() => sendSuggestion(text)}
+                  className="shrink-0 px-4 py-2 bg-white border rounded-full text-sm text-gray-700 shadow-md hover:bg-yellow-100 transition"
+                >
+                  {text}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Input */}
+          <div className="p-4 border-t flex gap-3">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+              placeholder="Type something here..."
+              className="flex-1 px-4 py-2 rounded-full border text-sm focus:outline-none"
+            />
+            <button
+              onClick={() => sendMessage()}
+              className="w-11 h-11 rounded-full bg-orange-500/90 text-white flex items-center justify-center"
+            >
+              ➤
+            </button>
+          </div>
+
         </div>
       </div>
-    </div>
-    <div><BackupAI/></div>
+
+      <BackupAI />
     </div>
   );
 }

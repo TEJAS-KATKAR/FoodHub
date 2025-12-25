@@ -428,12 +428,17 @@ export default function BackupAI() {
 
 const [typing, setTyping] = useState(false);
 
+/* ===============================
+   NORMAL SEND (INPUT / BUTTON)
+================================ */
 const sendMessage = () => {
   if (!input.trim() || typing) return;
 
+  const text = input;
+
   const userMsg = {
     sender: "user",
-    text: input,
+    text,
     time: new Date().toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit"
@@ -445,7 +450,7 @@ const sendMessage = () => {
   setTyping(true);
 
   setTimeout(() => {
-    const ai = getBackupAIResponse(userMsg.text);
+    const ai = getBackupAIResponse(text);
 
     setMessages(prev => [
       ...prev,
@@ -461,7 +466,45 @@ const sendMessage = () => {
     ]);
 
     setTyping(false);
-  }, 2200); // 2–3 sec delay feel
+  }, 2200);
+};
+
+/* ===============================
+   SUGGESTION SEND (ONE TAP)
+================================ */
+const sendSuggestion = (text) => {
+  if (typing) return;
+
+  const userMsg = {
+    sender: "user",
+    text,
+    time: new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
+  };
+
+  setMessages(prev => [...prev, userMsg]);
+  setTyping(true);
+
+  setTimeout(() => {
+    const ai = getBackupAIResponse(text);
+
+    setMessages(prev => [
+      ...prev,
+      {
+        sender: "ai",
+        text: ai.text,
+        images: ai.images,
+        time: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit"
+        })
+      }
+    ]);
+
+    setTyping(false);
+  }, 2200);
 };
 
 
@@ -482,8 +525,7 @@ const sendMessage = () => {
 
         <button
           onClick={() => setOpen(prev => !prev)}
-          className="px-7 py-3 rounded-xl bg-orange-500 text-white font-medium hover:scale-105 transition"
-        >
+          className="px-7 py-3 rounded-xl bg-orange-500 text-white font-medium hover:scale-105 transition shadow-xl ">
           {open ? "Close Backup AI" : "Use Backup AI"}
         </button>
       </div>
@@ -495,39 +537,41 @@ const sendMessage = () => {
 
             {/* HEADER */}
             <div className="p-4 border-b flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold">
+              <div className="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center text-white font-bold">
                 🍳
               </div>
               <div>
                 <p className="font-semibold">Backup AI</p>
                 <p className="text-xs text-gray-500">FoodHub Assistant</p>
               </div>
-              {previewImage && (
-  <div
-    className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
-    onClick={() => setPreviewImage(null)}
-  >
-    <div
-      className="relative bg-white rounded-2xl p-4 max-w-lg w-[50%]"
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* Close Button */}
-      <button
-        onClick={() => setPreviewImage(null)}
-        className="absolute -top-3 -right-3 w-8 h-8 bg-black text-white rounded-full flex items-center justify-center"
-      >
-        ✕
-      </button>
 
-      {/* Image */}
-      <img
-        src={previewImage}
-        alt="Preview"
-        className="w-full h-auto rounded-xl object-contain"
-      />
-    </div>
-  </div>
-)}
+
+              {previewImage && (
+                <div
+                  className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+                  onClick={() => setPreviewImage(null)}
+                >
+                  <div
+                    className="relative bg-white rounded-2xl p-4 max-w-lg w-[80%] lg:w-[30%]"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Close Button */}
+                    <button
+                      onClick={() => setPreviewImage(null)}
+                      className="absolute -top-3 -right-3 w-8 h-8 bg-black text-white rounded-full flex items-center justify-center"
+                    >
+                      ✕
+                    </button>
+
+                    {/* Image */}
+                    <img
+                      src={previewImage}
+                      alt="Preview"
+                      className="w-full h-auto rounded-xl object-contain"
+                    />
+                  </div>
+                </div>
+              )}
 
             </div>
 
@@ -550,15 +594,15 @@ const sendMessage = () => {
                 >
 
                   {msg.sender === "ai" && (
-                    <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white text-sm">
+                    <div className="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center text-white text-sm">
                       🍳
                     </div>
                   )}
 
                   <div
-                    className={`max-w-[40%] px-4 py-2 rounded-2xl text-sm ${
+                    className={`lg:max-w-[40%] md:max-w-[40%] max-w-[70%] px-4 py-2 rounded-2xl text-[13px] lg:text-sm md:text-sm ${
                       msg.sender === "user"
-                        ? "bg-orange-500/90 text-white rounded-br-md"
+                        ? "bg-yellow-400 text-white rounded-br-md"
                         : "bg-gray-200/40 text-gray-800 rounded-bl-md"
                     }`}
                   >
@@ -567,14 +611,14 @@ const sendMessage = () => {
 
                     {/* IMAGE response */}
                     {msg.images && msg.images.length > 0 && (
-                        <div className="flex gap-3 mt-3">
+                        <div className="flex lg:gap-2 md:gap-2 gap-1 mt-3">
                             {msg.images.map((img, idx) => (
                             <img
                                 key={idx}
                                 src={img}
                                 alt="Food"
                                 onClick={() => setPreviewImage(img)}
-                                className="w-36 h-28 rounded-xl object-cover border cursor-pointer hover:scale-105 transition"
+                                className="w-30 h-20 lg:w-36 lg:h-28 md:w-36 md:h-28 rounded-xl object-cover border cursor-pointer hover:scale-105 transition"
                                 loading="lazy"
                             />
                             ))}
@@ -598,7 +642,7 @@ const sendMessage = () => {
 
               {typing && (
                 <div className="flex items-end gap-2">
-                <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white text-sm">
+                <div className="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center text-white text-sm">
                     🍳
                 </div>
 
@@ -608,6 +652,40 @@ const sendMessage = () => {
                 </div>
                 )}
             </div>
+            
+            {/* SUGGESTED QUESTIONS */}
+            <div className="px-4 py-2 overflow-x-auto scrollbar-hide bg-transparent">
+              <div className="flex gap-3 w-max bg-transparent">
+                {[
+                  "How to make biryani?",
+                  "How to cook fish curry?",
+                  "Easy chicken recipes",
+                  "Paneer dishes for dinner",
+                  "Quick noodle recipes",
+                  "Healthy breakfast ideas",
+                  "Best street food snacks",
+                  "Low-oil veg recipes",
+                ].map((text) => (
+                  <button
+                    key={text}
+                    onClick={() => sendSuggestion(text)}
+                    className="
+                      shrink-0 px-4 py-2
+                      bg-white border
+                      rounded-full text-sm
+                      text-gray-700
+                      shadow-md
+                      hover:bg-yellow-100
+                      transition
+                    "
+                  >
+                    {text}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+
 
             {/* INPUT */}
             <div className="p-4 border-t flex gap-3">
@@ -620,7 +698,7 @@ const sendMessage = () => {
               />
               <button
                 onClick={sendMessage}
-                className="w-11 h-11 rounded-full bg-orange-500/90 text-white flex items-center justify-center"
+                className="w-11 h-11 rounded-full bg-yellow-500/90 text-white flex items-center justify-center"
               >
                 ➤
               </button>
