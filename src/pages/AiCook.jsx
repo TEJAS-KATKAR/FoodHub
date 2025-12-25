@@ -143,8 +143,8 @@ export default function AiCookChat() {
   /* ================== UI ================== */
   return (
     <div className="flex flex-col">
-    <div className="min-h-screen bg-orange-200/30 rounded-2xl flex justify-center items-center px-2 bg-[url('/chatbg.png')] bg-repeat w-full h-screen bg-size-[500px_400px] bg-center">
-      <div className="w-full md:w-230 max-w-5xl h-[90vh] bg-white rounded-2xl shadow-xl flex flex-col overflow-hidden">
+    <div className=" bg-orange-200/30 rounded-2xl flex justify-center px-2 bg-[url('/chatbg.png')] bg-repeat w-full lg:h-170  bg-size-[500px_400px] bg-center p-5">
+      <div className="w-full md:w-230 max-w-5xl lg:h-[80vh] md:h-[80vh] h-[60vh] bg-white rounded-2xl shadow-xl flex flex-col overflow-hidden">
         {/* Header */}
         <div className="p-4 border-b flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold">

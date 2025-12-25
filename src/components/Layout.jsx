@@ -8,14 +8,14 @@ import Rsidebar from "./Sidebar/Rsidebar";
 
 export default function Layout() {
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div className="min-h-screen flex flex-col">
       {/* top navbars */}
       <MainNavbar />
       <SecondaryNavbar />
-      <Rsidebar/>
+      <Rsidebar />
 
       {/* main content area (pages render here) */}
-      <main style={{ flex: 1, padding: "20px 24px", marginTop: "8px" }}>
+      <main className="flex-1 mt-2 py-3.5 px-4 lg:py-5 lg:px-6">
         <Outlet />
       </main>
 
@@ -24,4 +24,5 @@ export default function Layout() {
     </div>
   );
 }
+
 

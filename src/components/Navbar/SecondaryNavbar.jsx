@@ -6,7 +6,7 @@ export default function SecondaryNavbar() {
   const activeClass = "text-[#ff6b35] underline";
 
   return (
-    <nav className="sticky top-16 z-50 bg-[#f7f7f7] border-b border-[#e6e6e6] flex justify-center gap-2 sm:gap-3 lg:gap-6 px-2 sm:px-3 py-2 sm:py-2.5">
+    <nav className="lg:sticky top-16 z-50 bg-[#f7f7f7] border-b border-[#e6e6e6] flex lg:justify-center justify-evenly gap-2 sm:gap-3 lg:gap-6 px-2 sm:px-3 py-3 sm:py-2.5">
       <NavLink to="/" className={({ isActive }) => `${baseClass} ${isActive ? activeClass : ""}`}>Home</NavLink>
       <NavLink to="/filters" className={({ isActive }) => `${baseClass} ${isActive ? activeClass : ""}`}>Filters</NavLink>
       <NavLink to="/aicook" className={({ isActive }) => `${baseClass} ${isActive ? activeClass : ""}`}>AiCook</NavLink>

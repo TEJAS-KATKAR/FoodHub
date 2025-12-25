@@ -13,24 +13,24 @@ export default function MainNavbar() {
   }
 
   return (
-    <header className="sticky top-0 z-60 bg-white border-b border-gray-200 px-6 py-3 lg:py-3 flex flex-wrap items-center gap-3">
+    <header className="lg:sticky top-0 z-60 bg-white border-b border-gray-200 px-6 py-3 lg:py-3 flex flex-wrap items-center gap-3">
       <div className="w-full">
 
         {/* LEFT SECTION */}
-      <div className="flex flex-wrap items-center justify-center lg:justify-start w-full lg:w-auto gap-5">
+      <div className="flex flex-wrap items-center justify-center lg:justify-start w-full lg:w-auto gap-2 lg:gap-5">
 
         {/* LOGO */}
         <Link
           to="/"
           className="w-full lg:w-auto text-center lg:text-left"
         >
-          <h1 className="text-4xl mt-1 lg:m-2 text-orange-500 font-extralight lg:text-5xl ">
+          <h1 className="text-4xl mt-1 lg:m-2 m-0 text-orange-500 font-extralight lg:text-5xl ">
             FoodHub
           </h1>
         </Link>
 
       {/* RIGHT SECTION */}
-<div className="flex flex-wrap lg:flex-nowrap items-center justify-center gap-3 lg:ml-auto lg:mr-auto">
+<div className=" flex flex-wrap lg:mt-0 sm:mt-0 lg:flex-nowrap items-center justify-center gap-3 lg:ml-auto lg:mr-auto">
 
   {/* SEARCH */}
   <div className="flex w-full max-w-[350px] lg:min-w-[400px] lg:px-6 lg:py-3">
