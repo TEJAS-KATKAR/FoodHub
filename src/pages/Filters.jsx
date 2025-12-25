@@ -54,58 +54,67 @@ export default function Filters() {
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Filter Foods</h1>
-
+    <div className="p-0 lg:p-4">
+      <h1 className="text-2xl font-bold mb-1 lg:mb-3">Filter Foods</h1>
+      <hr className="border-t-2 border-gray-300 mb-1"></hr>
       
-      {/* FILTER BUTTONS */}
-        <div className="flex flex-wrap gap-3 mb-8">
+     {/* FILTER BUTTONS */}
+      <div
+        className="
+          my-2 gap-3 py-1
+          grid grid-flow-col grid-rows-2 overflow-x-auto
+          lg:flex lg:flex-nowrap lg:overflow-x-auto
+          scrollbar-hide
+        "
+      >
+        <button
+          onClick={() => setActiveFilter(null)}
+          className={`
+            px-5 py-2 rounded-full font-medium
+            border transition-all duration-200
+            ${
+              activeFilter === null
+                ? "bg-orange-500 text-white shadow-lg scale-105"
+                : "bg-white text-gray-700 hover:bg-orange-100"
+            }
+          `}
+        >
+          All
+        </button>
+
+        {categories.map((cat) => (
           <button
-            onClick={() => setActiveFilter(null)}
+            key={cat}
+            onClick={() => handleFilterClick(cat)}
             className={`
-              px-5 py-2 rounded-full font-medium
+              px-5 py-2 rounded-full font-medium 
               border transition-all duration-200
               ${
-                activeFilter === null
+                activeFilter === cat
                   ? "bg-orange-500 text-white shadow-lg scale-105"
                   : "bg-white text-gray-700 hover:bg-orange-100"
               }
             `}
           >
-            All
+            {cat}
           </button>
+        ))}
+      </div>
+      <hr className="border-t-2 border-gray-300 mb-8 "></hr>
 
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => handleFilterClick(cat)}
-              className={`
-                px-5 py-2 rounded-full font-medium
-                border transition-all duration-200
-                ${
-                  activeFilter === cat
-                    ? "bg-orange-500 text-white shadow-lg scale-105"
-                    : "bg-white text-gray-700 hover:bg-orange-100"
-                }
-              `}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-              {/* CATEGORY ROWS */}
-              {(activeFilter ? [activeFilter] : Object.keys(rows)).map((cat) => (
-                <CategoryRow
-                  key={cat}
-                  title={cat}
-                  items={rows[cat]}
-                />
-              ))}
+      {/* CATEGORY ROWS */}
+      {(activeFilter ? [activeFilter] : Object.keys(rows)).map((cat) => (
+        <CategoryRow
+          key={cat}
+          title={cat}
+          items={rows[cat]}
+        />
+      ))}
 
       {/* LOAD MORE (ONLY WHEN NO FILTER) */}
       {!activeFilter && visibleCount < categories.length && (
-        <button
+        <div className="flex justify-center">
+          <button
           onClick={loadMore}
           className="
             mt-8 px-10 py-3
@@ -119,6 +128,8 @@ export default function Filters() {
         >
           Load more categories
         </button>
+        </div>
+        
 
       )}
     </div>

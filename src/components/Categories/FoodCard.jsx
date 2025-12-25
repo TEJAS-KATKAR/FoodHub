@@ -18,14 +18,14 @@ export default function FoodCard({ item }) {
   return (
     <div
       onClick={handleClick}
-      className="group relative min-w-[220px] w-[180px] bg-white rounded-xl shadow cursor-pointer overflow-hidden hover:scale-[1.03] transition"
+      className="group relative min-w-[150px] lg:min-w-[220px]  bg-white rounded-xl shadow cursor-pointer overflow-hidden hover:scale-[1.03] transition"
     >
       {/* IMAGE */}
       {item.image && (
         <img
           src={item.image}
           alt={item.title}
-          className="w-full h-38 object-cover z-0 relative"
+          className="w-full h-26 lg:h-38 object-cover z-0 relative"
         />
       )}
 
