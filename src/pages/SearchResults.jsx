@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { searchMealsByName } from "../api/mealdb";
 import { searchDataset } from "../api/dataset";
-import FoodCard from "../components/FoodCard";
+import FoodCard from "../components/Categories/FoodCard";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
