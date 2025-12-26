@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 export default function AboutUs() {
+  const profile = "https://static.vecteezy.com/system/resources/previews/038/242/327/non_2x/user-profile-icon-in-circle-button-on-white-background-free-vector.jpg"
   return (
     <div className="p-1 flex justify-center">
       {/* ONE SINGLE WIDTH CONTAINER */}
@@ -115,7 +116,7 @@ export default function AboutUs() {
         {/* =========================
              SECTION 3: ABOUT ME
             ========================== */}
-        <div className="bg-[#0f172a] text-white rounded-3xl shadow-2xl p-8">
+        <div className="bg-[#0f172a] text-white rounded-3xl shadow-2xl p-4 lg:p-8">
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
@@ -125,7 +126,7 @@ export default function AboutUs() {
               {/* PROFILE IMAGE */}
               <div className="w-44 h-44 rounded-full overflow-hidden bg-gray-700 mb-6">
                 <img
-                  src="/your-photo.jpg"
+                  src={profile} 
                   alt="Tejas Katkar"
                   className="w-full h-full object-cover"
                 />
@@ -136,7 +137,7 @@ export default function AboutUs() {
                 Frontend Developer
               </p>
 
-              <p className="text-gray-300 text-base leading-relaxed mt-5">
+              <p className="text-gray-400 text-base leading-relaxed mt-5 text-[14px] lg:text-[16px]">
                 I build clean, structured, and user-focused frontend interfaces with
                 strong attention to layout, navigation, and data organization.
               </p>
@@ -145,38 +146,83 @@ export default function AboutUs() {
               <div className="flex gap-6 mt-6 text-gray-400">
                 <a href="#" className="hover:text-orange-400  duration-100 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">Twitter</a>
                 <a href="#" className="hover:text-orange-400 transition duration-100 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">Instagram</a>
-                <a href="#" className="hover:text-orange-400 transition duration-100 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/tejas-katkar1016" className="hover:text-orange-400 transition duration-100 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">LinkedIn</a>
               </div>
             </div>
 
             {/* RIGHT: SKILLS + ABOUT */}
             <div className="lg:col-span-7 flex flex-col gap-8">
 
-              {/* SKILLS */}
-              <div className="bg-[#020617] rounded-2xl p-6">
-                <h3 className="text-xl font-semibold text-orange-400 mb-4">
-                  Skills
-                </h3>
+              {/* SKILL PROFICIENCY */}
+              <div className="bg-[#020617] rounded-2xl p-6 duration-300 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">
+                <div className="flex items-center mb-6">
+                  <p className="bg-orange-500/20 text-orange-400 text-sm font-semibold px-2 py-1 rounded-lg">
+                    8.2
+                  </p>
+                  <p className="ml-2 font-medium text-gray-200">Excellent</p>
+                  <span className="w-1 h-1 mx-2 rounded-full bg-gray-500"></span>
+                  <span className="ml-auto text-sm font-medium text-orange-400">
+                    Skill overview
+                  </span>
+                </div>
 
-                <div className="flex flex-wrap gap-4 text-base">
-                  {[
-                    "HTML",
-                    "CSS",
-                    "JavaScript",
-                    "React",
-                    "Tailwind CSS",
-                    "C",
-                    "C++",
-                  ].map(skill => (
-                    <span
-                      key={skill}
-                      className="px-5 py-2 rounded-full bg-[#1e293b] text-gray-200 duration-100 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                <div className="grid sm:grid-cols-2 gap-8">
+                  {/* LEFT COLUMN */}
+                  <div className="space-y-4">
+                    {[
+                      { label: "React", value: 82 },
+                      { label: "Tailwind CSS", value: 88 },
+                      { label: "Javascript", value: 65 },
+                      { label: "UI Layout", value: 78 },
+                      
+                    ].map(item => (
+                      <div key={item.label}>
+                        <p className="text-sm font-medium text-gray-400 mb-1">
+                          {item.label}
+                        </p>
+                        <div className="flex items-center">
+                          <div className="w-full bg-gray-700 rounded-full h-2.5 mr-2">
+                            <div
+                              className="bg-orange-500/80 h-2.5 rounded-full"
+                              style={{ width: `${item.value}%` }}
+                            />
+                          </div>
+                          <span className="text-sm font-medium text-gray-300">
+                            {(item.value / 10).toFixed(1)}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* RIGHT COLUMN */}
+                  <div className="space-y-4">
+                    {[
+                      { label: "Problem Solving", value: 89 },
+                      { label: "Clean Code", value: 70 },
+                      { label: "AI usage (as low as good)", value: 46 },
+                    ].map(item => (
+                      <div key={item.label}>
+                        <p className="text-sm font-medium text-gray-400 mb-1">
+                          {item.label}
+                        </p>
+                        <div className="flex items-center">
+                          <div className="w-full bg-gray-700 rounded-full h-2.5 mr-2">
+                            <div
+                              className="bg-orange-500/80 h-2.5 rounded-full"
+                              style={{ width: `${item.value}%` }}
+                            />
+                          </div>
+                          <span className="text-sm font-medium text-gray-300">
+                            {(item.value / 10).toFixed(1)}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
+
 
               {/* ABOUT ME TEXT */}
               <div className="bg-[#020617] rounded-2xl p-6 min-h-[220px] duration-300 hover:scale-[1.04] hover:shadow-[0_0_25px_rgba(255,115,0,0.25)]">
