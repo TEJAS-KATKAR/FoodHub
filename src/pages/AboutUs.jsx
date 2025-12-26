@@ -15,19 +15,19 @@ import {
 
 export default function AboutUs() {
   return (
-    <div className="p-6 flex justify-center">
+    <div className="p-1 flex justify-center">
       {/* ONE SINGLE WIDTH CONTAINER */}
       <div className="w-full max-w-6xl space-y-8">
 
         {/* ================= ABOUT FOODHUB ================= */}
-        <div className="bg-[#0f172a] text-white rounded-3xl shadow-2xl p-6 md:p-10">
+        <div className="bg-[#0f172a] text-white rounded-3xl shadow-2xl p-4 lg:p-6 ">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
 
             <div className="md:col-span-7 bg-[#020617] rounded-2xl p-6">
               <h1 className="text-3xl font-bold mb-4 text-orange-400">
                 About FoodHub
               </h1>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed text-[15px] lg:text-[16px]">
                 FoodHub is built to let users explore food items using categories,
                 filters, and detailed views in a smooth and structured way.
                 <br /><br />
@@ -84,13 +84,12 @@ export default function AboutUs() {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 ">
                 <Tech icon={<Flame />} label="React.js" />
                 <Tech icon={<Bot />} label="AI Integration (API)" />
+                <Tech icon={<Bot />} label="Backup AI (logic)" />
                 <Tech icon={<Palette />} label="Tailwind CSS" />
                 <Tech icon={<Layers />} label="Lucide Icons" />
                 <Tech icon={<Link />} label="Multiple APIs" />
                 <Tech icon={<Database />} label="Offline Dataset" />
                 <Tech icon={<HardDrive />} label="LocalStorage Cache" />
-                <Tech icon={<Code />} label="HTML" />
-                <Tech icon={<Paintbrush />} label="CSS" />
               </div>
             </div>
 
