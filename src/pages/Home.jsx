@@ -168,18 +168,103 @@ export default function Home() {
         </div>
       </div>
 
-      {/* FOOTER NOTE */}
-      <div className="w-full flex justify-center my-12">
-        <div className="w-120 border rounded-4xl p-4 text-center">
-          <h1 className="font-extralight">
-            The website is not completed yet, be patient
-          </h1>
-          <img
-            src="https://www.shutterstock.com/image-vector/traffic-warning-sign-board-construction-260nw-2517286865.jpg"
-            className="w-100 mx-auto"
-          />
-        </div>
+            <section className="w-full px-4 lg:px-16 py-20 bg-white">
+      
+      {/* TITLE */}
+      <div className="max-w-5xl mx-auto text-center mb-16">
+        <h2 className="text-3xl lg:text-4xl font-light text-gray-900">
+          How FoodHub Helps You Choose Better
+        </h2>
+        <p className="mt-4 text-gray-500 text-base lg:text-lg">
+          Not just browsing food — making smarter food decisions.
+        </p>
       </div>
+
+      {/* CONTENT */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center">
+
+        {/* LEFT SIDE – INFO BLOCKS */}
+        <div className="flex flex-col gap-0 lg:gap-8 md:gap-8 ">
+
+          <div className="
+            bg-gray-50 rounded-2xl p-4 md:p-6
+            transition-all duration-300
+            hover:scale-[1.03]
+            hover:shadow-lg
+          ">
+            <h3 className="text-[18px] lg:text-xl font-semibold text-orange-500 mb-2 ">
+              Browse by Categories
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              Explore food easily by categories and cuisines instead of endlessly
+              scrolling through random dishes.
+            </p>
+          </div>
+
+          <div className="
+            bg-gray-50 rounded-2xl p-4 md:p-6
+            transition-all duration-300
+            hover:scale-[1.03]
+            hover:shadow-lg
+          ">
+            <h3 className="text-[18px] lg:text-xl font-semibold text-orange-500 mb-2">
+              Smart Filters
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              Filter dishes based on what you actually want and reduce unnecessary
+              reloads and clutter.
+            </p>
+          </div>
+
+          <div className="
+            bg-gray-50 rounded-2xl p-4 md:p-6
+            transition-all duration-300
+            hover:scale-[1.03]
+            hover:shadow-lg
+          ">
+            <h3 className="text-[18px] lg:text-xl font-semibold text-orange-500 mb-2">
+              Know What You Eat
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              Get a quick idea about calories, macros, and food composition without
+              diving into complicated nutrition charts.
+            </p>
+          </div>
+
+          <div className="
+            bg-gray-50 rounded-2xl p-4 md:p-6
+            transition-all duration-300
+            hover:scale-[1.03]
+            hover:shadow-lg
+          ">
+            <h3 className="text-[18px] lg:text-xl font-semibold text-orange-500 mb-2">
+              Ask AI When Unsure
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              Use AI Cook to get food ideas, explanations, or suggestions when
+              you’re confused about what to eat.
+            </p>
+          </div>
+
+        </div>
+
+        {/* RIGHT SIDE – VISUAL PLACEHOLDER */}
+        <div className="
+          w-full h-[300px] lg:h-[420px]
+          rounded-3xl
+          bg-orange-100/40
+          border border-orange-200 flex
+          flex-col items-center justify-center
+          transition-all duration-300
+          hover:scale-[1.02]
+        ">
+          <img src="https://img.freepik.com/premium-photo/table-with-many-different-food-items-including-food-drinks_1034924-12084.jpg" className="object-cover w-full"/>
+          <p className="text-gray-500/90 mr-auto">© This is an AI genereated image.</p>
+        </div>
+
+      </div>
+    </section>
+      
     </div>
   );
 }
