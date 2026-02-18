@@ -259,12 +259,131 @@ export default function Home() {
           hover:scale-[1.02]
         ">
           <img src="https://img.freepik.com/premium-photo/table-with-many-different-food-items-including-food-drinks_1034924-12084.jpg" className="object-cover w-full"/>
-          <p className="text-gray-500/90 mr-auto">© This is an AI genereated image.</p>
+          <p className="text-gray-500/90 mr-auto ml-2">© This is an AI genereated image.</p>
         </div>
 
       </div>
     </section>
+
+    <section className="w-full px-4 lg:px-16 py-20 bg-gray-50">
       
+      {/* TITLE */}
+      <div className="max-w-5xl mx-auto text-center mb-14">
+        <h2 className="text-3xl lg:text-4xl font-light text-gray-900">
+          Did You Know?
+        </h2>
+        <p className="mt-4 text-gray-500 text-base lg:text-lg">
+          Small food facts that help you understand what’s on your plate.
+        </p>
+      </div>
+
+      {/* FACT CARDS */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        {/* FACT 1 */}
+        <div className="
+          bg-white rounded-2xl p-6
+          border border-gray-200
+          transition-all duration-300
+          hover:scale-[1.03]
+          hover:shadow-lg
+        ">
+          <h3 className="text-[18px] lg:text-xl font-semibold text-orange-500 mb-2">
+            Calories ≠ Bad
+          </h3>
+          <p className="text-gray-600 leading-relaxed text-sm">
+            Calories are simply energy. Eating too little can be just as unhealthy
+            as eating too much.
+          </p>
+        </div>
+
+        {/* FACT 2 */}
+        <div className="
+          bg-white rounded-2xl p-6
+          border border-gray-200
+          transition-all duration-300
+          hover:scale-[1.03]
+          hover:shadow-lg
+        ">
+          <h3 className="text-[18px] lg:text-xl font-semibold text-orange-500 mb-2">
+            Protein Keeps You Full
+          </h3>
+          <p className="text-gray-600 leading-relaxed text-sm">
+            Foods high in protein help control hunger and keep you full for longer
+            periods.
+          </p>
+        </div>
+
+        {/* FACT 3 */}
+        <div className="
+          bg-white rounded-2xl p-6
+          border border-gray-200
+          transition-all duration-300
+          hover:scale-[1.03]
+          hover:shadow-lg
+        ">
+          <h3 className="text-[18px] lg:text-xl font-semibold text-orange-500 mb-2">
+            Carbs Are Energy
+          </h3>
+          <p className="text-gray-600 leading-relaxed text-sm">
+            Carbohydrates are the body’s main energy source and are especially
+            useful before physical activity.
+          </p>
+        </div>
+
+        {/* FACT 4 */}
+        <div className="
+          bg-white rounded-2xl p-6
+          border border-gray-200
+          transition-all duration-300
+          hover:scale-[1.03]
+          hover:shadow-lg
+        ">
+          <h3 className="text-[18px] lg:text-xl font-semibold text-orange-500 mb-2">
+            Fats Are Essential
+          </h3>
+          <p className="text-gray-600 leading-relaxed text-sm">
+            Healthy fats support brain function and hormones — the key is moderation,
+            not elimination.
+          </p>
+        </div>
+
+        {/* FACT 5 */}
+        <div className="
+          bg-white rounded-2xl p-6
+          border border-gray-200
+          transition-all duration-300
+          hover:scale-[1.03]
+          hover:shadow-lg
+        ">
+          <h3 className="text-[18px] lg:text-xl font-semibold text-orange-500 mb-2">
+            Home Food ≠ Low Calories
+          </h3>
+          <p className="text-gray-600 leading-relaxed text-sm">
+            Home-cooked food is usually healthier, but portion size still matters
+            for calorie intake.
+          </p>
+        </div>
+
+        {/* FACT 6 */}
+        <div className="
+          bg-white rounded-2xl p-6
+          border border-gray-200
+          transition-all duration-300
+          hover:scale-[1.03]
+          hover:shadow-lg
+        ">
+          <h3 className="text-[18px] lg:text-xl font-semibold text-orange-500 mb-2">
+            Water Affects Digestion
+          </h3>
+          <p className="text-gray-600 leading-relaxed text-sm">
+            Staying hydrated helps digestion, nutrient absorption, and overall
+            energy levels.
+          </p>
+        </div>
+
+      </div>
+    </section>
     </div>
   );
 }

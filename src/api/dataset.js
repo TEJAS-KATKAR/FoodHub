@@ -1,34 +1,42 @@
-// src/api/dataset.js
 import dataset from "../data/indianfood-dataset.json";
 
 /**
  * Convert raw dataset item → FoodCard display format
  */
-function mapToCard(item, index) {
+function mapToCard(item) {
   return {
-    id: `data_${index}`,              // unique id for routing
+    id: `data_${item.__index}`,   // use stored real index
     title: item.name,
     image: item.img_url,
     source: "dataset",
-    // keep original for later (detail page use)
     raw: item
   };
 }
 
 /**
- * Get ALL dataset foods as card items
+ * Attach permanent index to dataset once
+ */
+const datasetWithIndex = dataset.map((item, index) => ({
+  ...item,
+  __index: index
+}));
+
+/**
+ * Get ALL dataset foods
  */
 export function getAllDatasetCards() {
-  return dataset.map((item, index) => mapToCard(item, index));
+  return datasetWithIndex.map(item => mapToCard(item));
 }
 
 /**
- * Filter dataset by course (dessert, main course, etc.)
+ * Filter by course
  */
 export function getDatasetByCourse(course) {
-  return dataset
-    .filter(item => item.course?.toLowerCase() === course.toLowerCase())
-    .map((item, index) => mapToCard(item, index));
+  return datasetWithIndex
+    .filter(item =>
+      item.course?.toLowerCase() === course.toLowerCase()
+    )
+    .map(item => mapToCard(item));
 }
 
 /**
@@ -37,16 +45,15 @@ export function getDatasetByCourse(course) {
 export function searchDataset(query) {
   if (!query) return [];
 
-  return dataset
+  return datasetWithIndex
     .filter(item =>
       item.name.toLowerCase().includes(query.toLowerCase())
     )
-    .map((item, index) => mapToCard(item, index));
+    .map(item => mapToCard(item));
 }
 
 /**
  * Get single dataset item by id
- * (for DatasetDetails page later)
  */
 export function getDatasetById(id) {
   const index = Number(id.replace("data_", ""));
