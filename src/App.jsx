@@ -10,6 +10,8 @@ import AboutUs from "./pages/AboutUs";
 import RecipeDetails from "./pages/RecipeDetails";
 import SearchResults from "./pages/SearchResults";
 import DatasetDetails from "./pages/DatasetDetails";
+import CommentsPage from "./pages/CommentsPage";
+import AuthPage from "./pages/AuthPage";
 
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
           <Route path="/recipe/:id" element={<RecipeDetails />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/dataset/:id" element={<DatasetDetails />} />
+          <Route path="/comments" element={<CommentsPage />} />
+          <Route path="/login" element={<AuthPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

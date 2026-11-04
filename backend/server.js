@@ -11,16 +11,21 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/ai-cook", async (req, res) => {
+  const userMessage = req.body?.message;
+
+  if (!userMessage || !userMessage.trim()) {
+    return res.status(400).json({ reply: "Please enter a message." });
+  }
+
+  if (!process.env.GROQ_API_KEY) {
+    console.error("GROQ_API_KEY is missing.");
+    return res.status(500).json({ reply: "AI service is not configured." });
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+
   try {
-    const userMessage = req.body.message;
-
-    if (!userMessage) {
-      return res.json({ reply: "No message received" });
-    }
-
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000); // 15 sec timeout
-
     const response = await fetch(
       "https://api.groq.com/openai/v1/chat/completions",
       {
@@ -30,44 +35,63 @@ app.post("/api/ai-cook", async (req, res) => {
           Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "llama3-8b-8192",
+          model: "openai/gpt-oss-20b",
           messages: [
             {
               role: "system",
               content:
-                "You are AI Cook for FoodHub. Only answer food-related questions. If not food, politely refuse.",
+                "You are AI Cook, the food assistant for FoodHub. Answer questions about food, recipes, ingredients, cooking techniques, cuisines, and nutrition. Politely refuse unrelated questions. Give clear, helpful answers.",
             },
             {
               role: "user",
               content: userMessage,
             },
           ],
+          temperature: 0.7,
+          max_completion_tokens: 1024,
         }),
         signal: controller.signal,
       }
     );
 
-    clearTimeout(timeout);
-
     const data = await response.json();
 
-    if (!data.choices || !data.choices[0]) {
-      return res.json({ reply: "🍳 AI Cook is busy right now. Please try again in a moment." });
+    if (!response.ok) {
+      console.error("Groq API Error:", response.status, data);
+      return res.status(response.status).json({
+        reply: "AI Cook couldn't generate a response. Please try again.",
+      });
     }
 
-    res.json({
-      reply: data.choices[0].message.content,
-    });
-  } catch (error) {
-    console.error("AI ERROR:", error.message);
+    const aiReply = data.choices?.[0]?.message?.content;
 
-    res.json({
-      reply: "AI service is waking up. Please try again.",
+    if (!aiReply) {
+      console.error("Unexpected Groq response:", data);
+      return res.status(500).json({
+        reply: "AI Cook received an empty response. Please try again.",
+      });
+    }
+
+    return res.json({ reply: aiReply });
+  } catch (error) {
+    console.error("AI ERROR:", error);
+
+    if (error.name === "AbortError") {
+      return res.status(504).json({
+        reply: "AI Cook took too long to respond. Please try again.",
+      });
+    }
+
+    return res.status(500).json({
+      reply: "AI service is temporarily unavailable. Please try again.",
     });
+  } finally {
+    clearTimeout(timeout);
   }
 });
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log("Backend running on port", PORT);
 });

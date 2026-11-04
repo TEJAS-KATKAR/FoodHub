@@ -1,24 +1,171 @@
 {
   "comments": [
-    { "id": 1, "username": "FoodieRavi", "body": "Bro this biryani was so flavourful🔥" },
-    { "id": 2, "username": "TastyTara", "body": "The pizza crust was perfectly crispy!" },
-    { "id": 3, "username": "ChefManav", "body": "Best butter chicken I've had in months." },
-    { "id": 4, "username": "NoodleNora", "body": "These noodles were spicy but addictive 😭🔥" },
-    { "id": 5, "username": "CurryMaster", "body": "Paneer tikka was smoky and soft!" },
-    { "id": 6, "username": "BurgerBhai", "body": "Juicy patties and perfect cheese melt." },
-    { "id": 7, "username": "SweetTooth", "body": "That chocolate cake was heaven 😍" },
-    { "id": 8, "username": "HealthyHarsh", "body": "Loved the fresh veggies in the salad." },
-    { "id": 9, "username": "ThaliQueen", "body": "Thali quantity was too good for the price!" },
-    { "id": 10, "username": "SnackKing", "body": "The samosas were perfectly fried." },
-    { "id": 11, "username": "JuiceJatin", "body": "Mango shake felt natural and thick!" },
-    { "id": 12, "username": "CrispyChirag", "body": "Fries were hot and crisp till the last bite." },
-    { "id": 13, "username": "RollGirl", "body": "Chicken roll was huge and juicy." },
-    { "id": 14, "username": "DosaDude", "body": "Masala dosa was crispy and yum." },
-    { "id": 15, "username": "RiceBoy", "body": "Fried rice had perfect wok flavour." },
-    { "id": 16, "username": "SpiceQueen", "body": "Mirchi bajji hit different on rainy days 😍" },
-    { "id": 17, "username": "BakerRehan", "body": "Freshly baked cookies were soft and warm." },
-    { "id": 18, "username": "MilkshakeMira", "body": "Oreo shake was so thick and creamy!" },
-    { "id": 19, "username": "WaffleMan", "body": "Waffles were crunchy outside, soft inside." },
-    { "id": 20, "username": "PavBhajiFan", "body": "Perfect buttery pav bhaji, elite taste." }
+    {
+      "id": 1,
+      "username": "AaravCooks",
+      "body": "Tried making butter chicken using a recipe I found here. Honestly, I didn't expect it to turn out this good on my first attempt!",
+      "replies": [
+        ["MiraCooks", "Butter chicken is one of my favourites! Did you use fresh cream?", "18 min ago"],
+        ["AaravCooks", "Yes! Added a little extra cream at the end.", "12 min ago"],
+        ["FoodieSam", "Try adding a little kasuri methi next time. Makes a big difference!", "8 min ago"]
+      ]
+    },
+    {
+      "id": 2,
+      "username": "RiyaShah",
+      "body": "The homemade pizza recipe is surprisingly easy. I always thought making pizza dough would be difficult, but it wasn't!",
+      "replies": [
+        ["KitchenDiaries", "Homemade pizza is so much better when you can choose your own toppings!", "35 min ago"]
+      ]
+    },
+    {
+      "id": 3,
+      "username": "FoodieSam",
+      "body": "Guys, if you haven't tried Korean fried chicken yet, you're seriously missing out. The sweet and spicy sauce is incredible.",
+      "replies": []
+    },
+    {
+      "id": 4,
+      "username": "NehaPatel",
+      "body": "Made vegetable fried rice for lunch today. Added some spring onions and extra garlic. Simple recipe but tastes amazing!",
+      "replies": [
+        ["AaravCooks", "Garlic makes everything better 😂", "1 hour ago"],
+        ["NehaPatel", "Absolutely agree!", "55 min ago"]
+      ]
+    },
+    {
+      "id": 5,
+      "username": "DevOnFire",
+      "body": "I finally learned how to make proper fluffy pancakes. The trick is apparently not to overmix the batter. Wish I knew this earlier.",
+      "replies": []
+    },
+    {
+      "id": 6,
+      "username": "MiraCooks",
+      "body": "Anyone else loves experimenting with different pasta sauces? I tried spinach and garlic sauce yesterday and it was surprisingly good.",
+      "replies": [
+        ["RiyaShah", "You should try adding mushrooms too!", "2 hours ago"],
+        ["MiraCooks", "That's actually a great idea. Trying it this weekend.", "1 hour ago"]
+      ]
+    },
+    {
+      "id": 7,
+      "username": "KitchenDiaries",
+      "body": "Made homemade chocolate brownies for the first time. Crispy edges and a soft centre. Definitely saving this recipe!",
+      "replies": []
+    },
+    {
+      "id": 8,
+      "username": "RahulEats",
+      "body": "Quick question: can I replace paneer with tofu in a paneer tikka recipe? Trying to experiment with different ingredients.",
+      "replies": []
+    },
+    {
+      "id": 9,
+      "username": "AnanyaFood",
+      "body": "My mom's homemade masala dosa is still unbeatable, but I'm slowly learning to make it myself. Getting the dosa batter right is the hardest part.",
+      "replies": []
+    },
+    {
+      "id": 10,
+      "username": "ChefNikhil",
+      "body": "Small cooking tip: always roast your spices on low heat. Burning them can completely change the flavour of your dish.",
+      "replies": [
+        ["DevOnFire", "Learned this the hard way while making biryani 😭", "3 hours ago"],
+        ["ChefNikhil", "Haha, we've all been there!", "2 hours ago"]
+      ]
+    },
+    {
+      "id": 11,
+      "username": "PriyaMehta",
+      "body": "Made a mango smoothie with banana and yoghurt this morning. Three ingredients and breakfast was sorted.",
+      "replies": []
+    },
+    {
+      "id": 12,
+      "username": "FoodExplorer",
+      "body": "I recently tried making homemade momos. Folding them properly takes practice, but the result was worth it!",
+      "replies": [
+        ["AnanyaFood", "Same! Mine looked more like little bags than momos 😂", "4 hours ago"]
+      ]
+    },
+    {
+      "id": 13,
+      "username": "SamCooks",
+      "body": "Is there anyone who actually measures ingredients when making Maggi? I just add whatever I find in the fridge.",
+      "replies": []
+    },
+    {
+      "id": 14,
+      "username": "TanyaWrites",
+      "body": "Tried a simple garlic bread recipe today. Used regular sandwich bread instead of a baguette and it still turned out really nice.",
+      "replies": []
+    },
+    {
+      "id": 15,
+      "username": "ArjunFoodie",
+      "body": "Chicken biryani takes time, but honestly, the aroma when you finally open the pot is worth every minute.",
+      "replies": []
+    },
+    {
+      "id": 16,
+      "username": "MeeraKitchen",
+      "body": "For anyone trying to eat more vegetables, roasted vegetable wraps are a great option. Easy to prepare and you can use almost anything.",
+      "replies": []
+    },
+    {
+      "id": 17,
+      "username": "FoodWithAvi",
+      "body": "I added cheese to my regular aloo paratha today. Not traditional at all, but it tasted ridiculously good.",
+      "replies": []
+    },
+    {
+      "id": 18,
+      "username": "SanaCooks",
+      "body": "What's your favourite quick evening snack? I'm getting tired of eating the same sandwiches every day.",
+      "replies": [
+        ["PriyaMehta", "Try making crispy corn. It's really easy!", "5 hours ago"],
+        ["RahulEats", "Masala cheese toast is my go-to.", "4 hours ago"],
+        ["SanaCooks", "Both sound good. Adding them to my list!", "3 hours ago"]
+      ]
+    },
+    {
+      "id": 19,
+      "username": "VikramEats",
+      "body": "Made homemade chole today. Letting the masala cook properly before adding the chickpeas makes such a difference.",
+      "replies": []
+    },
+    {
+      "id": 20,
+      "username": "IshaFood",
+      "body": "Does anyone have a good eggless cake recipe? Every time I try one, the texture turns out a little too dense.",
+      "replies": []
+    },
+    {
+      "id": 21,
+      "username": "CookingWithJay",
+      "body": "Tried making restaurant-style garlic naan at home using a regular pan. It actually worked! No fancy equipment needed.",
+      "replies": []
+    },
+    {
+      "id": 22,
+      "username": "NishaPatil",
+      "body": "One thing I love about cooking at home is being able to adjust the spice level. My family likes everything extra spicy!",
+      "replies": []
+    },
+    {
+      "id": 23,
+      "username": "TheHungryDev",
+      "body": "Made a simple tomato soup and grilled cheese combo yesterday. Perfect comfort food for a lazy evening.",
+      "replies": [
+        ["MiraCooks", "That's one of the best combinations ever.", "6 hours ago"]
+      ]
+    },
+    {
+      "id": 24,
+      "username": "FoodLover99",
+      "body": "Just discovered how easy homemade ice cream can be. Tried a chocolate version and already planning a mango one next!",
+      "replies": []
+    }
   ]
 }

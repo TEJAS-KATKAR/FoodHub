@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import NL1 from "../../assets/NL1.webp";
-import NL2 from "../../assets/NL2.webp";
-import NL3 from "../../assets/NL3.webp";
-import NL4 from "../../assets/NL4.webp";
-import NL5 from "../../assets/NL5.webp";
-import NL6 from "../../assets/NL6.webp";
+import NL1 from "../../assets/Newsletters/NL1.webp";
+import NL2 from "../../assets/Newsletters/NL2.webp";
+import NL3 from "../../assets/Newsletters/NL3.webp";
+import NL4 from "../../assets/Newsletters/NL4.webp";
+import NL5 from "../../assets/Newsletters/NL5.webp";
+import NL6 from "../../assets/Newsletters/NL6.webp";
 import {Newspaper} from "lucide-react";
 
 export default function Rsidebar() {
