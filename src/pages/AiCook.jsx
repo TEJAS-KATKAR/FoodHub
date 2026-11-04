@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import BackupAI from "../components/BackupAI";
-
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 /* ================== GROQ CONFIG ================== */
 
 async function askAICook(userMessage) {
@@ -178,13 +179,20 @@ export default function AiCookChat() {
                 className={`max-w-[70%] px-4 py-2 rounded-2xl text-sm ${
                   msg.sender === "user"
                     ? "bg-orange-500/90 text-white rounded-br-md"
-                    : "bg-gray-200 text-gray-800 rounded-bl-md"
+                    : "bg-gray-100 text-gray-800 rounded-bl-md"
                 }`}
               >
-                <p>{msg.text}</p>
-                <p className="text-[10px] mt-1 opacity-70 text-right">
-                  {msg.time}
-                </p>
+                {msg.sender === "ai" ? (
+  <div className="text-sm leading-6 space-y-3 [&_h1]:text-lg [&_h1]:font-bold [&_h2]:text-base [&_h2]:font-bold [&_h3]:font-semibold [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_strong]:font-bold [&_table]:border-collapse [&_td]:border [&_td]:border-gray-400 [&_td]:p-2 [&_th]:border [&_th]:border-gray-400 [&_th]:p-2 [&_blockquote]:border-l-4 [&_blockquote]:border-orange-400 [&_blockquote]:pl-3">
+    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+      {msg.text}
+    </ReactMarkdown>
+  </div>
+) : (
+  <p>{msg.text}</p>
+)}
+
+<p className="text-[10px] mt-1 opacity-70 text-right">{msg.time}</p>
               </div>
 
               {msg.sender === "user" && (
