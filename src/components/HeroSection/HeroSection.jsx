@@ -2,7 +2,7 @@ import React from "react";
 import { MessageCircle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Comments from "../Comments/comments";
-import Herobanner from "../../assets/Herobanner.webp";
+import Herobanner from "../../assets/herobanner.webp";
 
 export default function HeroSection() {
   return (
