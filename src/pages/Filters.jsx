@@ -233,7 +233,7 @@ export default function Filters() {
       <hr className="border-t-2 border-gray-300 mb-1" />
 
       {/* FILTER BUTTONS */}
-        <div className="my-3 flex flex-nowrap justify-start items-center gap-2.5 py-2 overflow-x-auto overflow-y-hidden whitespace-nowrap scrollbar-hide">
+      <div className="my-3 flex w-full min-w-0 max-w-full flex-nowrap items-center justify-start gap-2.5 overflow-x-auto overflow-y-hidden overscroll-x-contain touch-pan-x py-2 whitespace-nowrap scrollbar-hide">
           <button
             onClick={() => setActiveFilter(null)}
             className={`shrink-0 px-4 py-2 rounded-full font-medium text-sm sm:text-base whitespace-nowrap border transition-all duration-200 ${

@@ -411,13 +411,13 @@ export default function Favourites() {
         </div>
 
         {filteredRecipes.length > 0 ? (
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="flex w-full snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible overscroll-x-contain touch-pan-x pb-4 sm:grid sm:grid-cols-3 sm:snap-none sm:overflow-visible sm:pb-0 lg:grid-cols-4 xl:grid-cols-5">
             {filteredRecipes.map((item) => {
               const key = getRecipeKey(item);
               const isCustomCollection = activeCollection !== "all" && activeCollection !== "recent";
 
               return (
-                <div key={key} className="min-w-0 rounded-xl">
+                <div key={key} className="w-[78vw] max-w-[300px] shrink-0 snap-start rounded-xl sm:w-auto sm:max-w-none sm:shrink">
   <FoodCard item={item} />
 
   {/* RECIPE ACTIONS */}
@@ -498,7 +498,7 @@ export default function Favourites() {
       </button>
     )}
 
-    
+
     {/* REMOVE FROM FAVOURITES */}
     <button
       onClick={(e) => {
