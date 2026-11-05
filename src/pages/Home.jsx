@@ -14,6 +14,19 @@ export default function Home() {
         <AutoSlider />
       </section>
 
+      <section className="px-4 lg:px-16 py-5">
+        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-5 gap-y-3 px-5 py-5 rounded-2xl bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100 border border-orange-200/70 shadow-sm">
+          <span className="text-gray-500 text-sm font-medium tracking-wide">Explore over</span>
+          <span className="inline-block ai-cook-icon text-3xl lg:text-4xl font-black text-orange-600 tracking-tight">1,000+</span>
+          <span className="text-gray-800 text-lg font-bold italic">Recipes</span>
+          <span className="hidden sm:block h-8 w-px bg-orange-300"></span>
+          <span className="text-2xl font-extrabold text-amber-600">235+</span>
+          <span className="text-gray-700 text-sm font-semibold">Indian Dishes</span>
+          <span className="hidden sm:block h-8 w-px bg-orange-300"></span>
+          <span className="text-orange-700 text-sm font-bold tracking-widest uppercase">Endless Flavours</span>
+        </div>
+      </section>
+
       {/* ================= DESKTOP ONLY (LG+) ================= */}
       <div className="hidden lg:block">
         <div className="flex-col m-10 justify-center bg-black/5 rounded-3xl">

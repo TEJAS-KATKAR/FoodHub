@@ -226,7 +226,7 @@ const [previousCount, setPreviousCount] = useState(null);
       <div className="px-3.5 pt-2.5 pb-3">
         {/* Name + Category */}
         <div className="flex items-center gap-2 min-h-[30px]">
-          <h3 className="min-w-0 flex-1 font-bold text-gray-800 text-[15px] leading-snug line-clamp-2 group-hover:text-orange-600 transition-colors">
+          <h3 className="min-w-0 flex-1 font-bold text-gray-800 text-[15px] leading-snug line-clamp-2 group-hover:text-orange-600 transition-colors truncate">
             {title}
           </h3>
 
@@ -264,11 +264,11 @@ const [previousCount, setPreviousCount] = useState(null);
         {ingredientCount !== null && ingredientCount > 0 && (
           <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-orange-50 text-orange-700">
             <Utensils size={13} />
-            <span className="text-xs font-semibold">{ingredientCount} Ingredients</span>
+            <span className="text-xs font-semibold truncate">{ingredientCount} Ingredients</span>
           </div>
         )}
       </div>
-      
+
 
         {/* Footer */}
         <div className="flex items-center justify-between mt-2.5">
