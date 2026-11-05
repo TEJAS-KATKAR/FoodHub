@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Home, SlidersHorizontal, Sparkles, Heart, Info } from "lucide-react";
+import { Home, Compass, Sparkles, Heart, Info } from "lucide-react";
 
 export default function SecondaryNavbar() {
   const links = [
     { name: "Home", path: "/", Icon: Home, end: true },
-    { name: "Filters", path: "/filters", Icon: SlidersHorizontal },
+    { name: "Explore", path: "/filters", Icon: Compass },
     { name: "AI Cook", path: "/aicook", Icon: Sparkles },
     { name: "Favourites", path: "/favourites", Icon: Heart },
     { name: "About Us", path: "/aboutus", Icon: Info },

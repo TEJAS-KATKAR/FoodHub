@@ -3,14 +3,12 @@ import React, { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import FoodCard from "./FoodCard";
 
-export default function CategoryRow({ title, items }) {
+function FoodScroller({ items }) {
   const scrollRef = useRef(null);
   const dragRef = useRef({ active: false, dragging: false, startX: 0, scrollLeft: 0, blockClick: false });
   const [isDragging, setIsDragging] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-
-  if (!items || items.length === 0) return null;
 
   const updateArrows = () => {
     const container = scrollRef.current;
@@ -24,10 +22,7 @@ export default function CategoryRow({ title, items }) {
     const container = scrollRef.current;
     if (!container) return;
 
-    container.scrollBy({
-      left: container.clientWidth * 0.8 * direction,
-      behavior: "smooth",
-    });
+    container.scrollBy({ left: container.clientWidth * 0.8 * direction, behavior: "smooth" });
   };
 
   const handlePointerDown = (e) => {
@@ -79,54 +74,65 @@ export default function CategoryRow({ title, items }) {
   };
 
   return (
+    <div className="relative">
+      <div
+        ref={scrollRef}
+        onScroll={updateArrows}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        onClickCapture={handleClickCapture}
+        className={`flex w-full min-w-0 gap-4 overflow-x-auto overflow-y-hidden overscroll-x-contain pb-2 scrollbar-hide select-none touch-pan-x ${
+          isDragging ? "cursor-grabbing" : "cursor-grab"
+        }`}
+      >
+        {items.map((item) => (
+          <div key={`${item.source}-${item.id}`} className="w-[210px] shrink-0 sm:w-[230px]">
+            <FoodCard item={item} />
+          </div>
+        ))}
+      </div>
+
+      <button
+        onClick={() => scroll(-1)}
+        disabled={!canScrollLeft}
+        className={`absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-200 ${
+          canScrollLeft ? "opacity-100 hover:bg-orange-500 hover:text-white" : "pointer-events-none opacity-0"
+        }`}
+        aria-label="Scroll left"
+      >
+        <ChevronLeft size={22} />
+      </button>
+
+      <button
+        onClick={() => scroll(1)}
+        disabled={!canScrollRight}
+        className={`absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-200 ${
+          canScrollRight ? "opacity-100 hover:bg-orange-500 hover:text-white" : "pointer-events-none opacity-0"
+        }`}
+        aria-label="Scroll right"
+      >
+        <ChevronRight size={22} />
+      </button>
+    </div>
+  );
+}
+
+export default function CategoryRow({ title, items }) {
+  if (!items || items.length === 0) return null;
+
+  // Preserve the original column-first order of the two-row grid.
+  const topRowItems = items.filter((_, index) => index % 2 === 0);
+  const bottomRowItems = items.filter((_, index) => index % 2 !== 0);
+
+  return (
     <div className="mb-5">
-      <h2 className="text-[20px] ml-2 font-bold mb-2">{title}</h2>
+      <h2 className="mb-2 ml-2 text-[20px] font-bold">{title}</h2>
 
-      <div className="relative">
-        <div
-          ref={scrollRef}
-          onScroll={updateArrows}
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={handlePointerUp}
-          onClickCapture={handleClickCapture}
-          className={`grid grid-rows-2 grid-flow-col auto-cols-[210px] sm:auto-cols-[230px] gap-4 overflow-x-auto pb-2 scrollbar-hide select-none touch-pan-y ${
-            isDragging ? "cursor-grabbing" : "cursor-grab"
-          }`}
-        >
-          {items.map((item) => (
-            <FoodCard key={`${item.source}-${item.id}`} item={item} />
-          ))}
-        </div>
-
-        {/* LEFT ARROW */}
-        <button
-          onClick={() => scroll(-1)}
-          disabled={!canScrollLeft}
-          className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center transition-all duration-200 ${
-            canScrollLeft
-              ? "opacity-100 hover:bg-orange-500 hover:text-white"
-              : "opacity-0 pointer-events-none"
-          }`}
-          aria-label="Scroll left"
-        >
-          <ChevronLeft size={22} />
-        </button>
-
-        {/* RIGHT ARROW */}
-        <button
-          onClick={() => scroll(1)}
-          disabled={!canScrollRight}
-          className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center transition-all duration-200 ${
-            canScrollRight
-              ? "opacity-100 hover:bg-orange-500 hover:text-white"
-              : "opacity-0 pointer-events-none"
-          }`}
-          aria-label="Scroll right"
-        >
-          <ChevronRight size={22} />
-        </button>
+      <div className="flex flex-col gap-4">
+        <FoodScroller items={topRowItems} />
+        {bottomRowItems.length > 0 && <FoodScroller items={bottomRowItems} />}
       </div>
     </div>
   );

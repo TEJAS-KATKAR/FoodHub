@@ -233,7 +233,8 @@ export default function Filters() {
       <hr className="border-t-2 border-gray-300 mb-1" />
 
       {/* FILTER BUTTONS */}
-      <div className="my-3 flex w-full min-w-0 max-w-full flex-nowrap items-center justify-start gap-2.5 overflow-x-auto overflow-y-hidden overscroll-x-contain touch-pan-x py-2 whitespace-nowrap scrollbar-hide">
+      <div className="my-3 block w-full min-w-0 max-w-full overflow-x-auto overflow-y-hidden overscroll-x-contain touch-pan-x py-2 scrollbar-hide">
+        <div className="flex w-max min-w-full flex-nowrap items-center gap-2.5 whitespace-nowrap">
           <button
             onClick={() => setActiveFilter(null)}
             className={`shrink-0 px-4 py-2 rounded-full font-medium text-sm sm:text-base whitespace-nowrap border transition-all duration-200 ${
@@ -259,43 +260,45 @@ export default function Filters() {
             </button>
           ))}
         </div>
-
-      {/* CATEGORY ROWS */}
-      {initialLoading ? (
-        <>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <CategorySkeleton key={index} />
-          ))}
-        </>
-      ) : error ? (
-        <div className="py-12 text-center text-gray-500">
-          Unable to load categories. Please refresh the page.
         </div>
-      ) : (
-        <>
-          {displayedCategories.map((cat) =>
-            loadingCategories.has(cat) ? (
-              <CategorySkeleton key={cat} />
-            ) : (
-              <CategoryRow key={cat} title={cat} items={rows[cat]} />
-            )
-          )}
-        </>
-      )}
 
-      {/* LOAD MORE */}
-      {!initialLoading &&
-        !activeFilter &&
-        visibleCount < categories.length && (
-          <div className="flex justify-center">
-            <button
-              onClick={loadMore}
-              className="mt-8 px-10 py-3 bg-orange-500 text-white rounded-full font-semibold shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl active:scale-95"
-            >
-              Load more categories
-            </button>
-          </div>
-        )}
+
+          {/* CATEGORY ROWS */}
+          {initialLoading ? (
+            <>
+              {Array.from({ length: 5 }).map((_, index) => (
+                <CategorySkeleton key={index} />
+              ))}
+            </>
+          ) : error ? (
+            <div className="py-12 text-center text-gray-500">
+              Unable to load categories. Please refresh the page.
+            </div>
+          ) : (
+            <>
+              {displayedCategories.map((cat) =>
+                loadingCategories.has(cat) ? (
+                  <CategorySkeleton key={cat} />
+                ) : (
+                  <CategoryRow key={cat} title={cat} items={rows[cat]} />
+                )
+              )}
+            </>
+          )}
+
+          {/* LOAD MORE */}
+          {!initialLoading &&
+            !activeFilter &&
+            visibleCount < categories.length && (
+              <div className="flex justify-center">
+                <button
+                  onClick={loadMore}
+                  className="mt-8 px-10 py-3 bg-orange-500 text-white rounded-full font-semibold shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl active:scale-95"
+                >
+                  Load more categories
+                </button>
+              </div>
+            )}
     </div>
   );
 }

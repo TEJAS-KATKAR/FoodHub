@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import FoodCard from "../components/Categories/FoodCard";
 import {
   Heart, Bookmark, Clock, Plus, Coffee, Sun, Cake, Utensils,
   Salad, Soup, Leaf, Folder, MoreHorizontal, Pencil, Trash2,
-  Search, ArrowLeft, X, Check, BookOpen, Trash
+  Search, ArrowLeft, X, Check, BookOpen, Trash, ChevronLeft, ChevronRight
 } from "lucide-react";
 
 const FAV_KEY = "foodhub_favourites";
@@ -66,6 +66,62 @@ export default function Favourites() {
   const [menuCollection, setMenuCollection] = useState(null);
 
   const [showCategoryMenu, setShowCategoryMenu] = useState(null);
+
+  // RECIPE HORIZONTAL SCROLL
+  const recipeScrollRef = useRef(null);
+  const dragRef = useRef({ active: false, startX: 0, scrollLeft: 0, dragging: false });
+
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const updateScrollButtons = () => {
+    const container = recipeScrollRef.current;
+    if (!container) return;
+
+    setCanScrollLeft(container.scrollLeft > 2);
+    setCanScrollRight(container.scrollLeft + container.clientWidth < container.scrollWidth - 2);
+  };
+
+  const scrollRecipes = (direction) => {
+    const container = recipeScrollRef.current;
+    if (!container) return;
+
+    container.scrollBy({
+      left: container.clientWidth * 0.8 * direction,
+      behavior: "smooth",
+    });
+  };
+
+  const handleRecipeMouseDown = (e) => {
+    if (e.button !== 0 || e.target.closest("button, select, input, a")) return;
+
+    dragRef.current = {
+      active: true,
+      startX: e.clientX,
+      scrollLeft: recipeScrollRef.current.scrollLeft,
+      dragging: false,
+    };
+  };
+
+  const handleRecipeMouseMove = (e) => {
+    if (!dragRef.current.active) return;
+
+    const distance = e.clientX - dragRef.current.startX;
+
+    if (Math.abs(distance) > 5) {
+      dragRef.current.dragging = true;
+    }
+
+    if (dragRef.current.dragging) {
+      recipeScrollRef.current.scrollLeft = dragRef.current.scrollLeft - distance;
+    }
+  };
+
+  const handleRecipeMouseUp = () => {
+    dragRef.current.active = false;
+  };
+
+  
 
   // SAVE DATA
   useEffect(() => {
@@ -150,6 +206,12 @@ export default function Favourites() {
     return result;
   }, [collectionRecipes, activeCategory, search, recipeCategories]);
 
+  // UPDATE SCROLL BUTTONS
+  useEffect(() => {
+    const timer = setTimeout(updateScrollButtons, 100);
+    return () => clearTimeout(timer);
+  }, [filteredRecipes]);
+  
   // CREATE COLLECTION
   const createCollection = () => {
     if (!collectionName.trim()) return;
@@ -383,8 +445,6 @@ export default function Favourites() {
         </div>
       </div>
 
-      
-
       {/* RECIPE SECTION */}
       <section>
         <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
@@ -411,109 +471,145 @@ export default function Favourites() {
         </div>
 
         {filteredRecipes.length > 0 ? (
-          <div className="flex w-full snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible overscroll-x-contain touch-pan-x pb-4 sm:grid sm:grid-cols-3 sm:snap-none sm:overflow-visible sm:pb-0 lg:grid-cols-4 xl:grid-cols-5">
-            {filteredRecipes.map((item) => {
-              const key = getRecipeKey(item);
-              const isCustomCollection = activeCollection !== "all" && activeCollection !== "recent";
+          <div className="relative w-full">
 
-              return (
-                <div key={key} className="w-[78vw] max-w-[300px] shrink-0 snap-start rounded-xl sm:w-auto sm:max-w-none sm:shrink">
-  <FoodCard item={item} />
-
-  {/* RECIPE ACTIONS */}
-  <div className="relative z-30 mt-2 flex flex-wrap items-center gap-1.5">
-
-    {/* ASSIGN CATEGORY */}
-    <div className="relative min-w-0">
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          setShowCategoryMenu(showCategoryMenu === key ? null : key);
-        }}
-        className="max-w-[110px] truncate rounded-lg bg-white px-2 py-1.5 text-xs font-semibold text-gray-600 shadow-md hover:bg-orange-50 hover:text-orange-600 sm:max-w-none"
-        title="Assign category"
-      >
-        {recipeCategories[key] || "Category"}
-      </button>
-
-      {showCategoryMenu === key && (
-        <div className="absolute bottom-full left-0 z-50 mb-2 max-h-52 w-36 overflow-y-auto rounded-xl border border-gray-100 bg-white p-1 shadow-xl">
-          {categories.filter((c) => c.name !== "All Recipes").map((category) => (
+            {/* LEFT ARROW */}
             <button
-              key={category.name}
-              onClick={(e) => {
-                e.stopPropagation();
-                assignCategory(item, category.name);
-              }}
-              className={`block w-full rounded-lg px-3 py-2 text-left text-xs hover:bg-orange-50 hover:text-orange-600 ${recipeCategories[key] === category.name ? "bg-orange-50 text-orange-600" : "text-gray-600"}`}
+              onClick={() => scrollRecipes(-1)}
+              disabled={!canScrollLeft}
+              className={`absolute left-2 top-1/2 z-40 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-200 ${
+                canScrollLeft ? "opacity-100 hover:bg-orange-500 hover:text-white" : "pointer-events-none opacity-0"
+              }`}
+              aria-label="Scroll left"
             >
-              {category.name}
+              <ChevronLeft size={22} />
             </button>
-          ))}
 
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              assignCategory(item, "");
-            }}
-            className="block w-full rounded-lg px-3 py-2 text-left text-xs text-red-500 hover:bg-red-50"
-          >
-            Clear category
-          </button>
-        </div>
-      )}
-    </div>
+            {/* RECIPE SCROLLER */}
+            <div
+              ref={recipeScrollRef}
+              onScroll={updateScrollButtons}
+              onMouseDown={handleRecipeMouseDown}
+              onMouseMove={handleRecipeMouseMove}
+              onMouseUp={handleRecipeMouseUp}
+              onMouseLeave={handleRecipeMouseUp}
+              className="flex w-full snap-x snap-mandatory gap-3 overflow-x-auto overflow-y-visible overscroll-x-contain touch-pan-x pb-4 scrollbar-hide cursor-grab active:cursor-grabbing select-none"
+            >
+              {filteredRecipes.map((item) => {
+                const key = getRecipeKey(item);
+                const isCustomCollection = activeCollection !== "all" && activeCollection !== "recent";
 
-    {/* ADD TO COLLECTION */}
-    {activeCollection === "all" && (
-      <select
-        value=""
-        onChange={(e) => {
-          if (e.target.value) addToCollection(e.target.value, item);
-        }}
-        onClick={(e) => e.stopPropagation()}
-        className="min-w-0 max-w-[105px] flex-1 cursor-pointer rounded-lg border border-gray-200 bg-white px-1.5 py-1.5 text-xs font-medium text-gray-600 shadow-md outline-none sm:max-w-[130px] sm:px-2"
-        title="Add to collection"
-      >
-        <option value="">+ Folder</option>
-        {collections.map((collection) => (
-          <option key={collection.id} value={collection.id}>
-            {collection.name}
-          </option>
-        ))}
-      </select>
-    )}
+                return (
+                  <div key={key} className="w-[220px] shrink-0 snap-start rounded-xl">
+                    <FoodCard item={item} />
 
-    {/* REMOVE FROM COLLECTION */}
-    {isCustomCollection && (
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          removeFromCollection(activeCollection, item);
-        }}
-        className="shrink-0 rounded-lg bg-white p-1.5 text-red-500 shadow-md hover:bg-red-50"
-        title="Remove from this collection"
-      >
-        <Trash size={15} />
-      </button>
-    )}
+                    {/* RECIPE ACTIONS */}
+                    <div className="relative z-30 mt-2 flex flex-wrap items-center gap-1.5">
 
+                      {/* ASSIGN CATEGORY */}
+                      <div className="relative min-w-0">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setShowCategoryMenu(showCategoryMenu === key ? null : key);
+                          }}
+                          className="max-w-[110px] truncate rounded-lg bg-white px-2 py-1.5 text-xs font-semibold text-gray-600 shadow-md hover:bg-orange-50 hover:text-orange-600 sm:max-w-none"
+                          title="Assign category"
+                        >
+                          {recipeCategories[key] || "Category"}
+                        </button>
 
-    {/* REMOVE FROM FAVOURITES */}
-    <button
-      onClick={(e) => {
-        e.stopPropagation();
-        removeFavourite(item);
-      }}
-      className="shrink-0 rounded-lg bg-white p-1.5 text-red-500 shadow-md hover:bg-red-50"
-      title="Remove from all favourites"
-    >
-      <X size={15} />
-    </button>
-  </div>
-</div>
-              );
-            })}
+                        {showCategoryMenu === key && (
+                          <div className="absolute bottom-full left-0 z-50 mb-2 max-h-52 w-36 overflow-y-auto rounded-xl border border-gray-100 bg-white p-1 shadow-xl">
+                            {categories.filter((c) => c.name !== "All Recipes").map((category) => (
+                              <button
+                                key={category.name}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  assignCategory(item, category.name);
+                                }}
+                                className={`block w-full rounded-lg px-3 py-2 text-left text-xs hover:bg-orange-50 hover:text-orange-600 ${recipeCategories[key] === category.name ? "bg-orange-50 text-orange-600" : "text-gray-600"}`}
+                              >
+                                {category.name}
+                              </button>
+                            ))}
+
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                assignCategory(item, "");
+                              }}
+                              className="block w-full rounded-lg px-3 py-2 text-left text-xs text-red-500 hover:bg-red-50"
+                            >
+                              Clear category
+                            </button>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* ADD TO COLLECTION */}
+                      {activeCollection === "all" && (
+                        <select
+                          value=""
+                          onChange={(e) => {
+                            if (e.target.value) addToCollection(e.target.value, item);
+                          }}
+                          onClick={(e) => e.stopPropagation()}
+                          className="min-w-0 max-w-[105px] flex-1 cursor-pointer rounded-lg border border-gray-200 bg-white px-1.5 py-1.5 text-xs font-medium text-gray-600 shadow-md outline-none sm:max-w-[130px] sm:px-2"
+                          title="Add to collection"
+                        >
+                          <option value="">+ Folder</option>
+                          {collections.map((collection) => (
+                            <option key={collection.id} value={collection.id}>
+                              {collection.name}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+
+                      {/* REMOVE FROM COLLECTION */}
+                      {isCustomCollection && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            removeFromCollection(activeCollection, item);
+                          }}
+                          className="shrink-0 rounded-lg bg-white p-1.5 text-red-500 shadow-md hover:bg-red-50"
+                          title="Remove from this collection"
+                        >
+                          <Trash size={15} />
+                        </button>
+                      )}
+
+                      {/* REMOVE FROM FAVOURITES */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          removeFavourite(item);
+                        }}
+                        className="shrink-0 rounded-lg bg-white p-1.5 text-red-500 shadow-md hover:bg-red-50"
+                        title="Remove from all favourites"
+                      >
+                        <X size={15} />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* RIGHT ARROW */}
+            <button
+              onClick={() => scrollRecipes(1)}
+              disabled={!canScrollRight}
+              className={`absolute right-2 top-1/2 z-40 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-200 ${
+                canScrollRight ? "opacity-100 hover:bg-orange-500 hover:text-white" : "pointer-events-none opacity-0"
+              }`}
+              aria-label="Scroll right"
+            >
+              <ChevronRight size={22} />
+            </button>
+
           </div>
         ) : (
           <div className="flex min-h-[280px] flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 bg-white px-5 text-center">
