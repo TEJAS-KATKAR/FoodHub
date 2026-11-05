@@ -15,7 +15,7 @@ export default function Layout() {
       <Rsidebar />
 
       {/* main content area (pages render here) */}
-      <main className="flex-1 mt-2 py-3.5 px-4 lg:py-5 lg:px-6">
+      <main className="flex-1 min-h-[400px] mt-2 py-3.5 px-4 lg:py-5 lg:px-6">
         <Outlet />
       </main>
 

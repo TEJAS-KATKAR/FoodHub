@@ -83,3 +83,181 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+
+/* Favourite count: old number exits downward */
+@keyframes countOld {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Favourite count: new number enters from above */
+@keyframes countNewUp {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Favourite count: new number enters from below */
+@keyframes countNewDown {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Floating +1 */
+@keyframes countFloatUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 5px) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -22px) scale(1);
+  }
+}
+
+/* Floating -1 */
+@keyframes countFloatDown {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -5px) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 15px) scale(1);
+  }
+}
+
+.count-old {
+  animation: countOld 0.35s ease-in forwards;
+}
+
+.count-new-up {
+  animation: countNewUp 0.35s ease-out forwards;
+}
+
+.count-new-down {
+  animation: countNewDown 0.35s ease-out forwards;
+}
+
+.count-float-up {
+  animation: countFloatUp 0.7s ease-out forwards;
+}
+
+.count-float-down {
+  animation: countFloatDown 0.7s ease-out forwards;
+}
+.count-number {
+  display: flex;
+  align-items: center;
+  height: 18px;
+  animation: countNumberSlide 0.4s ease-out;
+}
+
+@keyframes countNumberSlide {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.count-change {
+  position: absolute;
+  left: 50%;
+  top: -15px;
+  font-size: 10px;
+  font-weight: 700;
+  animation: countChangeFloat 0.6s ease-out forwards;
+}
+
+.count-up { color: #10b981; }
+.count-down { color: #ef4444; }
+
+@keyframes countChangeFloat {
+  0% { transform: translate(-50%, 0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(-50%, -12px); opacity: 0; }
+}
+
+/* Favourite badge pop */
+.favourite-badge {
+  animation: favouriteBadgePop 0.55s cubic-bezier(0.18, 0.89, 0.32, 1.4);
+}
+
+@keyframes favouriteBadgePop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.18); }
+  65% { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+
+/* Number positioning */
+.count-old,
+.count-new {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Increasing: new number enters from above */
+.count-new-up {
+  animation: countEnterDown 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.count-old-up {
+  animation: countExitDown 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Decreasing: new number enters from below */
+.count-new-down {
+  animation: countEnterUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.count-old-down {
+  animation: countExitUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes countEnterDown {
+  from { transform: translateY(-120%) scale(0.75); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes countExitDown {
+  from { transform: translateY(0) scale(1); opacity: 1; }
+  to { transform: translateY(120%) scale(0.75); opacity: 0; }
+}
+
+@keyframes countEnterUp {
+  from { transform: translateY(120%) scale(0.75); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes countExitUp {
+  from { transform: translateY(0) scale(1); opacity: 1; }
+  to { transform: translateY(-120%) scale(0.75); opacity: 0; }
+}

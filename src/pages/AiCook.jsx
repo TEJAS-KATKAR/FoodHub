@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import BackupAI from "../components/BackupAI";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useLocation } from "react-router-dom";
 /* ================== GROQ CONFIG ================== */
 
 async function askAICook(userMessage) {
@@ -25,7 +26,8 @@ export default function AiCookChat() {
 
   const messagesRef = useRef(null);
   const shouldAutoScroll = useRef(true);
-
+  const location = useLocation();
+  const initialPromptKey = useRef(null);
   /* ---------- scroll handling ---------- */
   const handleScroll = () => {
     const el = messagesRef.current;
@@ -86,6 +88,7 @@ export default function AiCookChat() {
       ...prev,
       { text: userText, sender: "user", time: getTime() },
     ]);
+    
 
     playPopSound();
     setInput("");
@@ -129,6 +132,35 @@ export default function AiCookChat() {
       ]);
     }
   };
+  // Automatically ask AI about the selected recipe
+useEffect(() => {
+  const recipe = location.state?.recipeContext;
+
+  if (!recipe || initialPromptKey.current === location.key) return;
+
+  initialPromptKey.current = location.key;
+
+  const ingredients = Array.isArray(recipe.ingredients)
+    ? recipe.ingredients
+    : [recipe.ingredients];
+
+  const prompt = `I want to prepare the following recipe. Please explain how to make it step by step, including preparation, cooking method, cooking tips, and important details.
+
+Recipe Name: ${recipe.name}
+Category: ${recipe.category || "Not specified"}
+Cuisine: ${recipe.cuisine || "Not specified"}
+Tags: ${recipe.tags || "None"}
+
+Ingredients:
+${ingredients.map((item, index) => `${index + 1}. ${item}`).join("\n")}
+
+Existing Recipe Instructions:
+${recipe.instructions || "No instructions provided."}
+
+Please provide clear and detailed cooking instructions for this particular recipe.`;
+
+  sendMessage(prompt);
+}, [location.key]);
 
   /* ================== SUGGESTION HANDLER ================== */
   const sendSuggestion = (text) => {
@@ -183,16 +215,16 @@ export default function AiCookChat() {
                 }`}
               >
                 {msg.sender === "ai" ? (
-  <div className="text-sm leading-6 space-y-3 [&_h1]:text-lg [&_h1]:font-bold [&_h2]:text-base [&_h2]:font-bold [&_h3]:font-semibold [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_strong]:font-bold [&_table]:border-collapse [&_td]:border [&_td]:border-gray-400 [&_td]:p-2 [&_th]:border [&_th]:border-gray-400 [&_th]:p-2 [&_blockquote]:border-l-4 [&_blockquote]:border-orange-400 [&_blockquote]:pl-3">
-    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-      {msg.text}
-    </ReactMarkdown>
-  </div>
-) : (
-  <p>{msg.text}</p>
-)}
+              <div className="text-sm leading-6 space-y-3 [&_h1]:text-lg [&_h1]:font-bold [&_h2]:text-base [&_h2]:font-bold [&_h3]:font-semibold [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_strong]:font-bold [&_table]:border-collapse [&_td]:border [&_td]:border-gray-400 [&_td]:p-2 [&_th]:border [&_th]:border-gray-400 [&_th]:p-2 [&_blockquote]:border-l-4 [&_blockquote]:border-orange-400 [&_blockquote]:pl-3">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {msg.text}
+                    </ReactMarkdown>
+                  </div>
+                ) : (
+                  <p>{msg.text}</p>
+                )}
 
-<p className="text-[10px] mt-1 opacity-70 text-right">{msg.time}</p>
+                <p className="text-[10px] mt-1 opacity-70 text-right">{msg.time}</p>
               </div>
 
               {msg.sender === "user" && (

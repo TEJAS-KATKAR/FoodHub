@@ -12,13 +12,14 @@ import SearchResults from "./pages/SearchResults";
 import DatasetDetails from "./pages/DatasetDetails";
 import CommentsPage from "./pages/CommentsPage";
 import AuthPage from "./pages/AuthPage";
-
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
     
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         {/* All pages are children of Layout so the navbars stay visible */}
         <Route element={<Layout />}>

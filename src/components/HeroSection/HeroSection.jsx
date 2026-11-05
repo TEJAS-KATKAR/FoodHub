@@ -2,7 +2,7 @@ import React from "react";
 import { MessageCircle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Comments from "../Comments/comments";
-import Herobanner from "../../assets/Herobanner.png";
+import Herobanner from "../../assets/Herobanner.webp";
 
 export default function HeroSection() {
   return (
@@ -10,11 +10,11 @@ export default function HeroSection() {
 
       {/* Left Hero Area */}
       <div className="w-full lg:flex-1 lg:w-0 min-w-0 overflow-hidden rounded-2xl shadow-[0_8px_25px_rgba(0,0,0,0.07)]">
-        <img
-          src={Herobanner}
-          alt="Explore delicious recipes"
-          className="block w-full h-auto object-cover"
-        />
+      <img
+        src={Herobanner}
+        alt="Explore delicious recipes"
+        className="block w-full h-full object-cover"
+      />
       </div>
 
       {/* Right Comments Preview */}
