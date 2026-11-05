@@ -498,6 +498,7 @@ export default function Favourites() {
       </button>
     )}
 
+    
     {/* REMOVE FROM FAVOURITES */}
     <button
       onClick={(e) => {
