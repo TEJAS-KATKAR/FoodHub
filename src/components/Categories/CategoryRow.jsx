@@ -83,7 +83,7 @@ function FoodScroller({ items }) {
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
         onClickCapture={handleClickCapture}
-        className={`flex w-full min-w-0 gap-4 overflow-x-auto overflow-y-hidden overscroll-x-contain pb-2 scrollbar-hide select-none touch-pan-x ${
+        className={`flex w-full min-w-0 gap-4 overflow-x-auto overflow-y-hidden overscroll-x-contain pb-2 scrollbar-hide select-none touch-auto ${
           isDragging ? "cursor-grabbing" : "cursor-grab"
         }`}
       >
